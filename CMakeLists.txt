@@ -6,6 +6,8 @@ set(CMAKE_C_STANDARD 11)
 
 add_executable(${PROJECT_NAME} src/main.c)
 
+add_subdirectory(src)
+
 find_package(Doxygen REQUIRED doxygen dot)
 set(DOXYGEN_DISTRIBUTE_GROUP_DOC YES)
 set(DOXYGEN_EXTRACT_ALL YES)
