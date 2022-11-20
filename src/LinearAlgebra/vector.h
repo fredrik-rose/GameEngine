@@ -1,8 +1,8 @@
 /**
  * \brief Vector interface
  */
-#ifndef VECTOR_H
-#define VECTOR_H
+#ifndef LINEARALGEBRA_VECTOR_H
+#define LINEARALGEBRA_VECTOR_H
 
 /**
  * \brief Vector with dynamic length
@@ -21,9 +21,9 @@ struct VEC_Vector
  * \param[in] value The new value
  */
 void VEC_set_element(
-    struct VEC_Vector *const vector,
-    const int pos,
-    const double value);
+    struct VEC_Vector *vector,
+    int pos,
+    double value);
 
 /**
  * \brief Get a certain element from a vector
@@ -34,8 +34,8 @@ void VEC_set_element(
  * \return The element
  */
 double VEC_get_element(
-    const struct VEC_Vector *const vector,
-    const int pos);
+    const struct VEC_Vector *vector,
+    int pos);
 
 /**
  * \brief Calculate the norm of a vector
@@ -45,7 +45,7 @@ double VEC_get_element(
  * \return The norm
  */
 double VEC_norm(
-    const struct VEC_Vector *const vector);
+    const struct VEC_Vector *vector);
 
 /**
  * \brief Normalize a vector so that it becomes a unit vector (in place)
@@ -53,7 +53,7 @@ double VEC_norm(
  * \param[in,out] vector The vector to normalize
  */
 void VEC_normalize(
-    struct VEC_Vector *const vector);
+    struct VEC_Vector *vector);
 
 /**
  * \brief Calculate the dot product of two vectors.
@@ -64,7 +64,7 @@ void VEC_normalize(
  * \return The dot product of the two vectors
  */
 double VEC_dot_product(
-    const struct VEC_Vector *const a,
-    const struct VEC_Vector *const b);
+    const struct VEC_Vector *a,
+    const struct VEC_Vector *b);
 
-#endif /* VECTOR_H */
+#endif /* LINEARALGEBRA_VECTOR_H */

@@ -1,8 +1,8 @@
 /**
  * \brief Matrix interface
  */
-#ifndef MATRIX_H
-#define MATRIX_H
+#ifndef LINEARALGEBRA_MATRIX_H
+#define LINEARALGEBRA_MATRIX_H
 
 #include "vector.h"
 
@@ -25,10 +25,10 @@ struct MAT_Matrix
  * \param[in] value The new value
  */
 void MAT_set_element(
-    struct MAT_Matrix *const matrix,
-    const int row,
-    const int col,
-    const double value);
+    struct MAT_Matrix *matrix,
+    int row,
+    int col,
+    double value);
 
 /**
  * \brief Get a certain element from a mtrix
@@ -40,9 +40,9 @@ void MAT_set_element(
  * \return The element
  */
 double MAT_get_element(
-    const struct MAT_Matrix *const matrix,
-    const int row,
-    const int col);
+    const struct MAT_Matrix *matrix,
+    int row,
+    int col);
 
 /**
  * \brief Transpose a matrix (in place)
@@ -50,7 +50,7 @@ double MAT_get_element(
  * \param[in,out] matrix The matrix to transpose
  */
 void MAT_transpose(
-    struct MAT_Matrix *const matrix);
+    struct MAT_Matrix *matrix);
 
 
 /**
@@ -61,9 +61,9 @@ void MAT_transpose(
  * \param[in,out] output An MxK matrix
  */
 void MAT_matrix_matrix_multiplication(
-    const struct MAT_Matrix *const a,
-    const struct MAT_Matrix *const b,
-    struct MAT_Matrix *const output);
+    const struct MAT_Matrix *a,
+    const struct MAT_Matrix *b,
+    struct MAT_Matrix *output);
 
 /**
  * \brief Multiply a matrix with a column vector.
@@ -74,8 +74,8 @@ void MAT_matrix_matrix_multiplication(
  * \param[in,out] output A vector of length M
  */
 void MAT_matrix_vector_multiplication(
-    const struct MAT_Matrix *const matrix,
-    const struct VEC_Vector *const vector,
-    struct VEC_Vector *const output);
+    const struct MAT_Matrix *matrix,
+    const struct VEC_Vector *vector,
+    struct VEC_Vector *output);
 
-#endif /* MATRIX_H */
+#endif /* LINEARALGEBRA_MATRIX_H */

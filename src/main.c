@@ -6,6 +6,9 @@
 
 int main(int argc, char *argv[])
 {
+    (void)argc;
+    (void)argv;
+
     const struct VEC_Vector vector = {
         .length = 4,
         .data = calloc(4, sizeof(*vector.data))

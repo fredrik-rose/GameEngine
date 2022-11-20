@@ -46,7 +46,7 @@ void MAT_transpose(
 
     const int temp = matrix->rows;
     matrix->rows = matrix->cols;
-    matrix->cols = matrix->rows;
+    matrix->cols = temp;
 }
 
 void MAT_matrix_matrix_multiplication(
