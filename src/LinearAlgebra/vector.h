@@ -19,7 +19,7 @@ struct VEC_Vector
  *
  * \param[in] length The length to allocate
  *
- * \return Allocated vector, remember to free it with VEC_free when no longer needed
+ * \return Allocated vector, remember to free it with VEC_free() when no longer needed
  */
 struct VEC_Vector * VEC_alloc(
     int length);
