@@ -4,6 +4,18 @@ project(GameEngine VERSION 1.0 LANGUAGES C)
 
 set(CMAKE_C_STANDARD 11)
 
+find_program(CMAKE_C_CPPCHECK NAMES cppcheck)
+if (CMAKE_C_CPPCHECK)
+    list(
+        APPEND CMAKE_C_CPPCHECK
+            "--enable=warning"
+            "--inconclusive"
+            "--force"
+            "--inline-suppr"
+            "--error-exitcode=-1"
+    )
+endif()
+
 add_executable(${PROJECT_NAME} src/main.c)
 
 add_subdirectory(src)

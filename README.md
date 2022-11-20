@@ -33,6 +33,7 @@ The following are required
 * cmake
 * doxygen
 * graphviz
+* cppcheck
 
 On an Ubuntu system these can be installed with the following commands.
 
@@ -43,4 +44,5 @@ sudo apt-get install gcc -y
 sudo apt-get install cmake -y
 sudo apt-get install doxygen -y
 sudo apt install graphviz -y
+sudo apt-get install cppcheck -y
 ```
