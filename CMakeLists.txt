@@ -4,6 +4,26 @@ project(GameEngine VERSION 1.0 LANGUAGES C)
 
 set(CMAKE_C_STANDARD 11)
 
+add_compile_options(
+    -Wall
+    -Wextra
+    -Wpedantic
+    -Werror
+    -Wfloat-equal
+    -Wundef
+    -Wshadow
+    -Wpointer-arith
+    -Wcast-align
+    -Wstrict-prototypes
+    -Wstrict-overflow=5
+    -Wwrite-strings
+    -Waggregate-return
+    -Wcast-qual
+    -Wswitch-default
+    -Wswitch-enum
+    -Wconversion
+    -Wunreachable-code)
+
 find_program(CMAKE_C_CPPCHECK NAMES cppcheck)
 if (CMAKE_C_CPPCHECK)
     list(
