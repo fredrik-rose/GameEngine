@@ -5,6 +5,25 @@
 
 #include <assert.h>
 #include <math.h>
+#include <stdlib.h>
+
+struct VEC_Vector * VEC_alloc(
+    const int length)
+{
+    struct VEC_Vector *const vector = calloc(1, sizeof(*vector));
+
+    vector->data = calloc((size_t)length, sizeof(*vector->data));
+    vector->length = length;
+
+    return vector;
+}
+
+void VEC_free(
+    struct VEC_Vector *const vector)
+{
+    free(vector->data);
+    free(vector);
+}
 
 void VEC_set_element(
     struct VEC_Vector *const vector,

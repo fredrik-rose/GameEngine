@@ -14,6 +14,24 @@ struct VEC_Vector
 };
 
 /**
+ * \brief Allocate a vector
+ *
+ * \param[in] length The length to allocate
+ *
+ * \return Allocated vector, remember to free it with VEC_free when no longer needed
+ */
+struct VEC_Vector * VEC_alloc(
+    int length);
+
+/**
+ * \brief Free a vector
+ *
+ * \param[in,out] vector The vector to free (do not use it anymore)
+ */
+void VEC_free(
+    struct VEC_Vector *vector);
+
+/**
  * \brief Update the value of an element in a vector
  *
  * \param[in,out] vector The vector
