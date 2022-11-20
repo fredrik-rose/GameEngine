@@ -1,4 +1,7 @@
-add_library(LinearAlgebra matrix.c vector.c)
+add_library(LinearAlgebra
+    matrix.c
+    vector.c
+)
 
 target_link_libraries(LinearAlgebra LINK_PRIVATE m)
 

@@ -1,4 +1,6 @@
-add_library(TestFramework test_framework.c)
+add_library(TestFramework
+    test_framework.c
+)
 
 target_link_libraries(TestFramework LINK_PRIVATE m)
 

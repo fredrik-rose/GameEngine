@@ -1,4 +1,6 @@
-add_library(Base math_functions.c)
+add_library(Base
+    math_functions.c
+)
 
 target_link_libraries(Base LINK_PRIVATE m)
 
