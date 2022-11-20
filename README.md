@@ -13,6 +13,8 @@ make
 ./GameEngine
 ```
 
+### Documentation
+
 To build the documentation run the following commands.
 
 ```
@@ -21,7 +23,7 @@ cd build
 make doc
 ```
 
-The documentation can be found in `html/index.html`.
+The generated documentation can be found in `html/index.html`.
 
 ### Requirements
 
