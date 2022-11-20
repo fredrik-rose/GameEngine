@@ -1,4 +1,5 @@
 /**
+ * \file
  * \brief Matrix interface
  */
 #ifndef LINEARALGEBRA_MATRIX_H

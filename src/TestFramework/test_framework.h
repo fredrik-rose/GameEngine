@@ -1,4 +1,5 @@
 /**
+ * \file
  * \brief Interface of a minimalistic unit test framework
  */
 #include <math.h>

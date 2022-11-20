@@ -1,4 +1,5 @@
 /**
+ * \file
  * \brief Common interface
  */
 

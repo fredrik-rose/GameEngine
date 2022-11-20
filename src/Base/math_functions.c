@@ -1,4 +1,5 @@
 /**
+ * \file
  * \brief Math implementation
  */
 #include "math_functions.h"

@@ -1,4 +1,5 @@
 /**
+ * \file
  * \brief Vector interface
  */
 #ifndef LINEARALGEBRA_VECTOR_H

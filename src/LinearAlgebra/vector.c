@@ -1,4 +1,5 @@
 /**
+ * \file
  * \brief Vector implementation
  */
 #include "vector.h"

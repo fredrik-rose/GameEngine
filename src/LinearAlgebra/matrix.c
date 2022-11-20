@@ -1,4 +1,5 @@
 /**
+ * \file
  * \brief Matrix implementation
  */
 #include "matrix.h"

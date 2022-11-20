@@ -1,4 +1,5 @@
 /**
+ * \file
  * \brief Implementation of a minimalistic unit test framework
  */
 #include "test_framework.h"
