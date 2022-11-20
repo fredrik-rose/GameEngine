@@ -34,6 +34,7 @@ The following are required
 * doxygen
 * graphviz
 * cppcheck
+* clang-tidy
 
 On an Ubuntu system these can be installed with the following commands.
 
@@ -45,4 +46,5 @@ sudo apt-get install cmake -y
 sudo apt-get install doxygen -y
 sudo apt install graphviz -y
 sudo apt-get install cppcheck -y
+sudo apt-get install clang-tidy -y
 ```

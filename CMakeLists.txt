@@ -16,6 +16,8 @@ if (CMAKE_C_CPPCHECK)
     )
 endif()
 
+set(CMAKE_C_CLANG_TIDY clang-tidy -checks=*,-llvm-header-guard,readability-* -warnings-as-errors=* -header-filter=.)
+
 add_executable(${PROJECT_NAME} src/main.c)
 
 add_subdirectory(src)
