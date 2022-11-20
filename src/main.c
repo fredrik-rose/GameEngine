@@ -1,13 +1,14 @@
- #include "LinearAlgebra/matrix.h"
- #include "LinearAlgebra/vector.h"
+#include "Base/common.h"
+#include "LinearAlgebra/matrix.h"
+#include "LinearAlgebra/vector.h"
 
 #include <stdio.h>
 #include <stdlib.h>
 
 int main(int argc, char *argv[])
 {
-    (void)argc;
-    (void)argv;
+    UNUSED_PARAM(argc);
+    UNUSED_PARAM(argv);
 
     const struct VEC_Vector vector = {
         .length = 4,
