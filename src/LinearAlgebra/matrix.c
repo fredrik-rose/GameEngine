@@ -9,6 +9,28 @@
 #include <assert.h>
 #include <stdlib.h>
 
+struct MAT_Matrix * MAT_alloc(
+    const int rows,
+    const int cols)
+{
+    struct MAT_Matrix *const matrix = calloc(1, sizeof(*matrix));
+
+    const int number_of_elements = rows * cols;
+
+    matrix->data = calloc((size_t)number_of_elements, sizeof(*matrix->data));
+    matrix->rows = rows;
+    matrix->cols = cols;
+
+    return matrix;
+}
+
+void MAT_free(
+    struct MAT_Matrix *const matrix)
+{
+    free(matrix->data);
+    free(matrix);
+}
+
 void MAT_set_element(
     struct MAT_Matrix *const matrix,
     const int row,

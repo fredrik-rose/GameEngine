@@ -18,6 +18,26 @@ struct MAT_Matrix
 };
 
 /**
+ * \brief Allocate a matrix
+ *
+ * \param[in] rows The number of rows to allocate
+ * \param[in] cols The number of columns to allocate
+ *
+ * \return Allocated matrix, remember to free it with MAT_free() when no longer needed
+ */
+struct MAT_Matrix * MAT_alloc(
+    int rows,
+    int cols);
+
+/**
+ * \brief Free a matrix
+ *
+ * \param[in,out] matrix The matrix to free (do not use it anymore)
+ */
+void MAT_free(
+    struct MAT_Matrix *matrix);
+
+/**
  * \brief Update the value of an element in a matrix
  *
  * \param[in,out] matrix The matrix
