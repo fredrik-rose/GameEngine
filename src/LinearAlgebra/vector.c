@@ -31,7 +31,7 @@ void VEC_set_element(
     const int pos,
     const double value)
 {
-    assert(pos < vector->length);
+    assert(pos < vector->length); // LCOV_EXCL_LINE
 
     vector->data[pos] = value;
 }
@@ -40,7 +40,7 @@ double VEC_get_element(
     const struct VEC_Vector *const vector,
     const int pos)
 {
-    assert(pos < vector->length);
+    assert(pos < vector->length); // LCOV_EXCL_LINE
 
     return vector->data[pos];
 }
@@ -75,7 +75,7 @@ double VEC_dot_product(
     const struct VEC_Vector *const a,
     const struct VEC_Vector *const b)
 {
-    assert(a->length == b->length);
+    assert(a->length == b->length); // LCOV_EXCL_LINE
 
     double result = 0.0;
 

@@ -4,6 +4,11 @@ project(GameEngine VERSION 1.0 LANGUAGES C)
 
 set(CMAKE_C_STANDARD 11)
 
+if (CMAKE_BUILD_TYPE STREQUAL "RelWithDebInfo")
+    list(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
+    include (lcov)
+endif()
+
 add_compile_options(
     -Wall
     -Wextra
@@ -26,13 +31,16 @@ add_compile_options(
     "$<$<CONFIG:RELWITHDEBINFO>:-fno-omit-frame-pointer>"
     "$<$<CONFIG:RELWITHDEBINFO>:-fsanitize=address>"
     "$<$<CONFIG:RELWITHDEBINFO>:-fsanitize=undefined>"
+    "$<$<CONFIG:RELWITHDEBINFO>:-fprofile-arcs>"
+    "$<$<CONFIG:RELWITHDEBINFO>:-ftest-coverage>"
 )
 
 add_link_options(
     "$<$<CONFIG:RELWITHDEBINFO>:-fsanitize=address>"
     "$<$<CONFIG:RELWITHDEBINFO>:-fsanitize=undefined>"
+    "$<$<CONFIG:RELWITHDEBINFO>:-fprofile-arcs>"
+    "$<$<CONFIG:RELWITHDEBINFO>:-ftest-coverage>"
 )
-
 
 find_program(CMAKE_C_CPPCHECK NAMES cppcheck)
 if (CMAKE_C_CPPCHECK)

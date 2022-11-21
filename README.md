@@ -43,6 +43,18 @@ errors and undefined behavior. The `RelWithDebInfo` configuration also includes 
 which makes it easier to find where a particular problem occurred as it will contain a detailed
 call stack.
 
+#### Test Coverage
+
+Test coverage is a useful tool that measures how much of the source code is covered by tests. To
+build and run test coverage, run everything in the previous section and then run the following
+command.
+
+```
+make lcov
+```
+
+The test coverage report can be found in `lcov/index.html`.
+
 #### Test under valgrind
 
 To build and run the tests under valgrind run the following commands.
@@ -71,6 +83,7 @@ The following are required
 * cppcheck
 * clang-tidy
 * valgrind
+* lcov
 
 On an Ubuntu system these can be installed with the following commands.
 
@@ -84,4 +97,5 @@ sudo apt install graphviz -y
 sudo apt-get install cppcheck -y
 sudo apt-get install clang-tidy -y
 sudo apt install valgrind -y
+sudo apt install lcov -y
 ```
