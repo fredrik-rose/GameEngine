@@ -22,7 +22,17 @@ add_compile_options(
     -Wswitch-default
     -Wswitch-enum
     -Wconversion
-    -Wunreachable-code)
+    -Wunreachable-code
+    "$<$<CONFIG:RELWITHDEBINFO>:-fno-omit-frame-pointer>"
+    "$<$<CONFIG:RELWITHDEBINFO>:-fsanitize=address>"
+    "$<$<CONFIG:RELWITHDEBINFO>:-fsanitize=undefined>"
+)
+
+add_link_options(
+    "$<$<CONFIG:RELWITHDEBINFO>:-fsanitize=address>"
+    "$<$<CONFIG:RELWITHDEBINFO>:-fsanitize=undefined>"
+)
+
 
 find_program(CMAKE_C_CPPCHECK NAMES cppcheck)
 if (CMAKE_C_CPPCHECK)
