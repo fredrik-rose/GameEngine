@@ -38,7 +38,11 @@ endif()
 
 set(CMAKE_C_CLANG_TIDY clang-tidy -checks=*,-llvm-header-guard,readability-* -warnings-as-errors=* -header-filter=.)
 
+include(CTest)
+
 add_executable(${PROJECT_NAME} src/main.c)
+
+include_directories(${PROJECT_SOURCE_DIR}/src)
 
 add_subdirectory(src)
 

@@ -25,6 +25,18 @@ make doc
 
 The generated documentation can be found in `html/index.html`.
 
+### Test
+
+To build and run the tests run the following commands.
+
+```
+cmake -S <path to GameEngine> -B build
+cd build
+ctest --verbose
+```
+
+Note that `ctest` have other flags that can e.g. select which tests to run.
+
 ### Requirements
 
 The following are required
