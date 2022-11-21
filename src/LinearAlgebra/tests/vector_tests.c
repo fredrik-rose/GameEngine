@@ -23,6 +23,9 @@ static int test_VEC_dot_product(void)
 
     TF_assert_double_eq(actual, expected, granularity);
 
+    VEC_free(b);
+    VEC_free(a);
+
     return 0;
 }
 
@@ -43,6 +46,8 @@ static int test_VEC_normalize(void)
     const double actual = VEC_norm(vector);
 
     TF_assert_double_eq(actual, expected, granularity);
+
+    VEC_free(vector);
 
     return 0;
 }
