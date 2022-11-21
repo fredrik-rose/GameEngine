@@ -2,6 +2,13 @@ cmake_minimum_required(VERSION 3.16)
 
 project(GameEngine VERSION 1.0 LANGUAGES C)
 
+find_program(IWYU_PATH NAMES include-what-you-use iwyu)
+if (NOT IWYU_PATH)
+  message(FATAL_ERROR "Could not find the program include-what-you-use")
+endif()
+# Include what you use seems to have a bug, therefore we need to add the ugly include path.
+set(CMAKE_C_INCLUDE_WHAT_YOU_USE "${IWYU_PATH};-I/usr/lib/llvm-10/lib/clang/10.0.0/include")
+
 set(CMAKE_C_STANDARD 11)
 
 if (CMAKE_BUILD_TYPE STREQUAL "RelWithDebInfo")

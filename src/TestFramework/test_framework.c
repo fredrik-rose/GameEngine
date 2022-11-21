@@ -4,6 +4,8 @@
  */
 #include "test_framework.h"
 
+#include <stdio.h>
+
 int TF_run_suite(
     TF_test_case test_cases[],
     const int number_of_test_cases)

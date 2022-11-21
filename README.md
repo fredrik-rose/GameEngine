@@ -84,6 +84,7 @@ The following are required
 * clang-tidy
 * valgrind
 * lcov
+* include-what-you-use
 
 On an Ubuntu system these can be installed with the following commands.
 
@@ -98,4 +99,5 @@ sudo apt-get install cppcheck -y
 sudo apt-get install clang-tidy -y
 sudo apt install valgrind -y
 sudo apt install lcov -y
+sudo apt install iwyu -y
 ```
