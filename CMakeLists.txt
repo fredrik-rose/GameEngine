@@ -61,7 +61,9 @@ if (CMAKE_C_CPPCHECK)
     )
 endif()
 
-set(CMAKE_C_CLANG_TIDY clang-tidy -checks=*,-llvm-header-guard,readability-* -warnings-as-errors=* -header-filter=.)
+set(CMAKE_C_CLANG_TIDY clang-tidy
+    -checks=*,-llvm-header-guard,readability-*,-readability-magic-numbers,-cppcoreguidelines-avoid-magic-numbers,
+    -warnings-as-errors=* -header-filter=.*)
 
 set(MEMORYCHECK_COMMAND_OPTIONS
     "--leak-check=full --show-leak-kinds=all --track-origins=yes --verbose --error-exitcode=1")
