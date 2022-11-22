@@ -66,13 +66,12 @@ double MAT_get_element(
     int col);
 
 /**
- * \brief Transpose a matrix (in place)
+ * \brief Transpose a square matrix (in place)
  *
- * \param[in,out] matrix The matrix to transpose
+ * \param[in,out] matrix The square matrix to transpose
  */
-void MAT_transpose(
+void MAT_transpose_square(
     struct MAT_Matrix *matrix);
-
 
 /**
  * \brief Multiply two matrices

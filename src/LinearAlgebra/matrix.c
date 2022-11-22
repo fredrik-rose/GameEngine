@@ -41,7 +41,7 @@ void MAT_set_element(
     assert(col < matrix->cols);
 
     matrix->data[(matrix->cols * row) + col] = value;
-}
+} // LCOV_EXCL_LINE
 
 double MAT_get_element(
     const struct MAT_Matrix *const matrix,
@@ -54,12 +54,12 @@ double MAT_get_element(
     return matrix->data[(matrix->cols * row) + col];
 }
 
-void MAT_transpose(
+void MAT_transpose_square(
     struct MAT_Matrix *const matrix)
 {
-    for (int r = 0; r < matrix->rows; ++r)
+    for (int r = 1; r < matrix->rows; ++r)
     {
-        for (int c = 0; c < matrix->cols; ++c)
+        for (int c = 0; c < r; ++c)
         {
             const double temp = MAT_get_element(matrix, r, c);
             MAT_set_element(matrix, r, c, MAT_get_element(matrix, c, r));
