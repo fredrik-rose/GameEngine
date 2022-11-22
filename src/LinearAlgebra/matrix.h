@@ -5,7 +5,7 @@
 #ifndef LINEARALGEBRA_MATRIX_H
 #define LINEARALGEBRA_MATRIX_H
 
-#include "vector.h"
+struct VEC_Vector;
 
 /**
  * \brief Matrix with dynamic size

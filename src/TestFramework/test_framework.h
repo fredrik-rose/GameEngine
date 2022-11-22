@@ -5,7 +5,7 @@
 #include <math.h>
 #include <stdio.h>
 
-/** Assert that a certain expression is true */
+/** Assert that a certain expression is true (shall only be used inside a test case function) */
 #define TF_assert(expression) \
     do { \
         if (!(expression)) { \
@@ -14,7 +14,7 @@
         } \
     } while (0)
 
-/** Assert that two floating point values are equal */
+/** Assert that two floating point values are equal (shall only be used inside a test case function) */
 #define TF_assert_double_eq(a, b, granularity) TF_assert(fabs((a) - (b)) < (granularity))
 
 /** Prototype of a test case */

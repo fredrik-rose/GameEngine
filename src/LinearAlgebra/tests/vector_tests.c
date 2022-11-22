@@ -54,8 +54,8 @@ static int test_VEC_normalize(void)
 
 int main(int argc, char *argv[])
 {
-    UNUSED_PARAM(argc);
-    UNUSED_PARAM(argv);
+    UNUSED(argc);
+    UNUSED(argv);
 
     TF_test_case test_cases[] = {
         test_VEC_dot_product,

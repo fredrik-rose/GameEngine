@@ -7,8 +7,8 @@
 
 int main(int argc, char *argv[])
 {
-    UNUSED_PARAM(argc);
-    UNUSED_PARAM(argv);
+    UNUSED(argc);
+    UNUSED(argv);
 
     const struct VEC_Vector vector = {
         .length = 4,
