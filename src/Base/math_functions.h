@@ -2,6 +2,8 @@
  * \file
  * \brief Math interface
  */
+#ifndef BASE_MATHFUNCTIONS_H
+#define BASE_MATHFUNCTIONS_H
 
 /**
  * \brief Clamps a value to a certain range
@@ -16,3 +18,5 @@ double MATH_clamp(
     double x,
     double min_value,
     double max_value);
+
+#endif /* BASE_MATHFUNCTIONS_H */

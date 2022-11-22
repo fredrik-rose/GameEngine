@@ -2,6 +2,9 @@
  * \file
  * \brief Interface of a minimalistic unit test framework
  */
+#ifndef TESTFRAMEWORK_TESTFRAMEWORK_H
+#define TESTFRAMEWORK_TESTFRAMEWORK_H
+
 #include <math.h>
 #include <stdio.h>
 
@@ -33,3 +36,5 @@ typedef void (*TF_test_case)(void);
 int TF_run_suite(
     TF_test_case test_cases[],
     int number_of_test_cases);
+
+#endif /* TESTFRAMEWORK_TESTFRAMEWORK_H */
