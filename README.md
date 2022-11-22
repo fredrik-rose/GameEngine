@@ -101,3 +101,40 @@ sudo apt install valgrind -y
 sudo apt install lcov -y
 sudo apt install iwyu -y
 ```
+
+## Test Framework
+
+A simple test framework has been implemented. It lacks a lot of features like setup/teardown,
+fixtures, mocks, etc., but using it in conjunction with `ctest` it is sufficient for a small project
+like this. There exists a lot of test frameworks for C but not really any "standard" one that most
+project uses.
+
+### Example
+
+The following is an example of a test suite that uses the framework.
+
+```
+#include "TestFramework/test_framework.h"
+
+int TF_test_case_status; /* All test suites must define this global variable. */
+
+static void test_my_function_a(void)
+{
+    TF_assert(my_function_a(1) == 4);
+}
+
+static void test_my_function_b(void)
+{
+    TF_assert(my_function_b(1) == 2);
+}
+
+int main(void)
+{
+    TF_test_case test_cases[] = {
+        test_my_function_a,
+        test_my_function_b,
+    };
+
+    return TF_run_suite(test_cases, 2);
+}
+```
