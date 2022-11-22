@@ -15,7 +15,7 @@
     } while (0)
 
 /** Assert that two floating point values are equal (shall only be used inside a test case function) */
-#define TF_assert_double_eq(a, b, granularity) TF_assert(fabs((a) - (b)) < (granularity))
+#define TF_assert_double_eq(a, b, granularity) TF_assert(fabs((a) - (b)) <= (granularity))
 
 extern int TF_test_case_status;
 
