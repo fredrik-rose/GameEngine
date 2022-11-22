@@ -10,15 +10,17 @@
     do { \
         if (!(expression)) { \
             printf("%s:%d %s FAILED\n%s\n", __FILE__, __LINE__, __func__, #expression); \
-            return -1; \
+            TF_test_case_status = -1; \
         } \
     } while (0)
 
 /** Assert that two floating point values are equal (shall only be used inside a test case function) */
 #define TF_assert_double_eq(a, b, granularity) TF_assert(fabs((a) - (b)) < (granularity))
 
+extern int TF_test_case_status;
+
 /** Prototype of a test case */
-typedef int (*TF_test_case)(void);
+typedef void (*TF_test_case)(void);
 
 /**
  * \brief Run a test suite (a collection of test cases)

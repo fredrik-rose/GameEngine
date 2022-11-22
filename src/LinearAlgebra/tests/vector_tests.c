@@ -3,9 +3,11 @@
 #include "Base/common.h"
 #include "TestFramework/test_framework.h"
 
+int TF_test_case_status;
+
 static const double granularity = 1e-5;
 
-static int test_VEC_dot_product(void)
+static void test_VEC_dot_product(void)
 {
     const int length = 3;
 
@@ -25,11 +27,9 @@ static int test_VEC_dot_product(void)
 
     VEC_free(b);
     VEC_free(a);
-
-    return 0;
 }
 
-static int test_VEC_normalize(void)
+static void test_VEC_normalize(void)
 {
     const int length = 3;
 
@@ -48,8 +48,6 @@ static int test_VEC_normalize(void)
     TF_assert_double_eq(actual, expected, granularity);
 
     VEC_free(vector);
-
-    return 0;
 }
 
 int main(int argc, char *argv[])

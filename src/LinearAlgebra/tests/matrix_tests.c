@@ -4,9 +4,11 @@
 #include "Base/common.h"
 #include "TestFramework/test_framework.h"
 
+int TF_test_case_status;
+
 static const double granularity = 1e-5;
 
-static int test_MAT_transpose_square(void)
+static void test_MAT_transpose_square(void)
 {
     double values[][3] = {
         {1.0, 2.0, 3.0},
@@ -39,11 +41,9 @@ static int test_MAT_transpose_square(void)
             TF_assert_double_eq(actual, expected, granularity);
         }
     }
-
-    return 0;
 }
 
-static int test_MAT_matrix_matrix_multiplication(void)
+static void test_MAT_matrix_matrix_multiplication(void)
 {
     double a_values[][3] = {
         {1.0, 2.0, 3.0},
@@ -86,11 +86,9 @@ static int test_MAT_matrix_matrix_multiplication(void)
     }
 
     MAT_free(output);
-
-    return 0;
 }
 
-static int test_MAT_matrix_vector_multiplication(void)
+static void test_MAT_matrix_vector_multiplication(void)
 {
     double matrix_values[][3] = {
         {1.0, 2.0, 3.0},
@@ -126,8 +124,6 @@ static int test_MAT_matrix_vector_multiplication(void)
     }
 
     VEC_free(output);
-
-    return 0;
 }
 
 int main(int argc, char *argv[])

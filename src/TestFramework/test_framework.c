@@ -14,7 +14,11 @@ int TF_run_suite(
 
     for (int i = 0; i < number_of_test_cases; ++i)
     {
-        if (test_cases[i]())
+        TF_test_case_status = 0;
+
+        test_cases[i]();
+
+        if (TF_test_case_status)
         {
             ++failed;
         }
