@@ -1,4 +1,5 @@
 add_subdirectory(Base)
+add_subdirectory(Engine)
 add_subdirectory(LinearAlgebra)
 add_subdirectory(TestFramework)
 
