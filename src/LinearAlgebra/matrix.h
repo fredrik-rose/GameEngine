@@ -52,6 +52,16 @@ void MAT_set_element(
     double value);
 
 /**
+ * \brief Set all elements in matrix a matrix to a certain value
+ *
+ * \param[in,out] matrix The matrix
+ * \param[in] value The value
+ */
+void MAT_set_all_elements(
+    struct MAT_Matrix *matrix,
+    double value);
+
+/**
  * \brief Get a certain element from a mtrix
  *
  * \param[in] vector The vector

@@ -43,6 +43,19 @@ void MAT_set_element(
     matrix->data[(matrix->cols * row) + col] = value;
 } // LCOV_EXCL_LINE
 
+void MAT_set_all_elements(
+    struct MAT_Matrix *const matrix,
+    const double value)
+{
+    for (int r = 0; r < matrix->rows; ++r)
+    {
+        for (int c = 0; c < matrix->cols; ++c)
+        {
+            MAT_set_element(matrix, r, c, value);
+        }
+    }
+}
+
 double MAT_get_element(
     const struct MAT_Matrix *const matrix,
     const int row,
