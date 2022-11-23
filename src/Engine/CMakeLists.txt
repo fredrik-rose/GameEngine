@@ -1,7 +1,10 @@
-add_library(Engine INTERFACE)
-
-target_link_libraries(Engine INTERFACE
-    Base
+add_library(Engine
+    camera.c
 )
 
-target_include_directories(Engine INTERFACE ${CMAKE_CURRENT_SOURCE_DIR})
+target_link_libraries(Engine LINK_PUBLIC
+    Base
+    LinearAlgebra
+)
+
+target_include_directories(Engine PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
