@@ -123,11 +123,8 @@ static void render_object(
     for (int i = 0; i < object->length; ++i)
     {
         const struct COORD_Coordinate3D *const object_position = &object->coordinates[i];
-        const struct COORD_Coordinate3D world_position = {
-            .x = object_position->x + position->x,
-            .y = object_position->y + position->y,
-            .z = object_position->z + position->z
-        };
+        struct COORD_Coordinate3D world_position;
+        COORD_Coordinate3D_add(object_position, position, &world_position);
 
         render_pixel(renderer, &world_position, 'X');
     }
