@@ -30,4 +30,16 @@ void COORD_Coordinate3D_add(
     const struct COORD_Coordinate3D *b,
     struct COORD_Coordinate3D *output);
 
+/**
+ * \brief Subtract two 3D coordinates
+ *
+ * \param[in] a The first coordinate
+ * \param[in] b The second coordinate
+ * \param[out] output The difference, a - b
+ */
+void COORD_Coordinate3D_sub(
+    const struct COORD_Coordinate3D *a,
+    const struct COORD_Coordinate3D *b,
+    struct COORD_Coordinate3D *output);
+
 #endif /* BASE_COORDINATES_H */
