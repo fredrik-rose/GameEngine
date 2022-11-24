@@ -18,7 +18,8 @@ struct OBJ_Object
      * located nor how it is rotated.
      */
     struct COORD_Coordinate3D *coordinates;
-    int length; /**< Number of coordinates */
+    struct COORD_Coordinate3D *surface_normals; /**< The normal vectors of the surface of each coordinate */
+    int length; /**< Number of coordinates and surface_normals */
 };
 
 #endif /* ENGINE_OBJECT_H */

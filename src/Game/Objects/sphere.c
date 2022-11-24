@@ -24,6 +24,7 @@ struct OBJ_Object * SPHERE_create(
 
     sphere->length = steps * steps;
     sphere->coordinates = calloc((size_t)sphere->length, sizeof(*sphere->coordinates));
+    sphere->surface_normals = calloc((size_t)sphere->length, sizeof(*sphere->surface_normals));
 
     int index = 0;
 
@@ -43,6 +44,9 @@ struct OBJ_Object * SPHERE_create(
             assert(index < sphere->length);
 
             sphere->coordinates[index] = coordinate;
+            /* Radius is not needed for the surface normal but it does not change the direction of
+             * the vector so it is simplest just to include it. */
+            sphere->surface_normals[index] = coordinate;
 
             ++index;
         }
@@ -56,6 +60,7 @@ struct OBJ_Object * SPHERE_create(
 void SPHERE_free(
     struct OBJ_Object *const sphere)
 {
+    free(sphere->surface_normals);
     free(sphere->coordinates);
     free(sphere);
 }
