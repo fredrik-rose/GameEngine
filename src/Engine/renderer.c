@@ -6,9 +6,12 @@
 
 #include "camera.h"
 #include "coordinate_system_transformations.h"
+#include "illumination.h"
 #include "object.h"
 
+#include "Base/common.h"
 #include "Base/coordinates.h"
+#include "Base/math_functions.h"
 #include "LinearAlgebra/Matrix.h"
 
 #include <assert.h>
@@ -73,6 +76,25 @@ static void draw_frame(
 }
 
 /**
+ * \brief Converts an illumination level to a certain pixel "color"
+ *
+ * \param[in] illumination The illumination level [0, 1]
+ *
+ * \return Pixel color
+ */
+static char convert_illumination_to_pixel_color(
+    const double illumination)
+{
+    static const char illumination_levels[] = {'.', ',', '-', '~', ':', ';', '=', '!', '*', '#', '$', '@'};
+    const int lenght = LENGTH(illumination_levels);
+    const double luminance_index = (illumination * lenght);
+    const int clamped_luminance_index = (int)MATH_clamp(luminance_index, 0, lenght - 1);
+    const char color = illumination_levels[clamped_luminance_index];
+
+    return color;
+}
+
+/**
  * \brief Render a single pixel given a world coordinate.
  *
  * \param[in,out] renderer The renderer
@@ -117,6 +139,7 @@ static void render_pixel(
  */
 static void render_object(
     struct REND_Renderer *const renderer,
+    const struct COORD_Coordinate3D *const light_source,
     const struct OBJ_Object *const object,
     const struct COORD_Coordinate3D *const position)
 {
@@ -126,7 +149,11 @@ static void render_object(
         struct COORD_Coordinate3D world_position;
         COORD_Coordinate3D_add(object_position, position, &world_position);
 
-        render_pixel(renderer, &world_position, 'X');
+        const struct COORD_Coordinate3D *const surface_normal = &object->surface_normals[i];
+        const double illumination = ILL_get_illumination(light_source, &world_position, surface_normal);
+        const char color = convert_illumination_to_pixel_color(illumination);
+
+        render_pixel(renderer, &world_position, color);
     }
 }
 
@@ -146,6 +173,7 @@ struct REND_Renderer * REND_create(
 
 void REND_render(
     struct REND_Renderer *const renderer,
+    const struct COORD_Coordinate3D *const light_source,
     const struct REND_Objects *const objects)
 {
     reset_frame_buffer(renderer->frame_buffer);
@@ -155,7 +183,7 @@ void REND_render(
     {
         const struct REND_ObjectWithPosition *const object_with_position = &objects->objects[i];
 
-        render_object(renderer, object_with_position->object, &object_with_position->position);
+        render_object(renderer, light_source, object_with_position->object, &object_with_position->position);
     }
 
     draw_frame(renderer->frame_buffer);

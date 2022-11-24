@@ -33,6 +33,12 @@ void GAME_run(void)
         &optical_center,
         &calibration);
 
+    const struct COORD_Coordinate3D light_source = {
+        .x = -1.0,
+        .y = 1.0,
+        .z = 1.0
+    };
+
     struct OBJ_Object *const sphere = SPHERE_create(1.0);
     const struct COORD_Coordinate3D sphere_position = {
         .x = 0.0,
@@ -53,7 +59,7 @@ void GAME_run(void)
 
     struct REND_Renderer *const renderer = REND_create(&calibration, SCREEN_WIDTH, SCREEN_HEIGHT);
 
-    REND_render(renderer, &model);
+    REND_render(renderer, &light_source, &model);
 
     SPHERE_free(sphere);
     REND_destroy(renderer);

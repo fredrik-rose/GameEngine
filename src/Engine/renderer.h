@@ -55,10 +55,12 @@ void REND_destroy(
  * \brief Render a model
  *
  * \param[in,out] renderer The renderer
+ * \param[in] light_source The position of the light source
  * \param[in] objects The objects with corresponding world positions to render
  */
 void REND_render(
     struct REND_Renderer *renderer,
+    const struct COORD_Coordinate3D *light_source,
     const struct REND_Objects *objects);
 
 #endif /* GAME_RENDERER_H */
