@@ -1,6 +1,7 @@
 add_library(Engine
     camera.c
     coordinate_system_transformations.c
+    illumination.c
     renderer.c
 )
 
