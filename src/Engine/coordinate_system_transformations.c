@@ -9,6 +9,7 @@
 #include "LinearAlgebra/vector.h"
 
 #include <assert.h>
+#include <math.h>
 
 void CST_world_coordinate_to_image_coordinate(
     const struct COORD_Coordinate3D *const world_coordinate,
@@ -34,4 +35,58 @@ void CST_world_coordinate_to_image_coordinate(
 
     VEC_free(homogeneous_image_coordinate);
     VEC_free(homogeneous_world_coordinate);
+}
+
+struct MAT_Matrix * CST_get_extrinsic_rotation_matrix(
+    const struct CST_Rotation3D *const rotation)
+{
+    const double a = rotation->pitch; /* x */
+    const double b = rotation->yaw; /* y */
+    const double g = rotation->roll; /* z */
+
+    double pitch_data[3][3] = {
+        {1.0,    0.0,     0.0},
+        {0.0, cos(a), -sin(a)},
+        {0.0, sin(a),  cos(a)},
+    };
+
+    double yaw_data[3][3] = {
+        {cos(b),  0.0, sin(b)},
+        {   0.0,  1.0,    0.0},
+        {-sin(b), 0.0, cos(b)},
+    };
+
+    double roll_data[3][3] = {
+        {cos(g), -sin(g), 0.0},
+        {sin(g),  cos(g), 0.0},
+        {   0.0,     0.0, 1.0},
+    };
+
+    const struct MAT_Matrix yaw = {
+        .rows = 3,
+        .cols = 3,
+        .data = &yaw_data[0][0],
+    };
+
+    const struct MAT_Matrix pitch = {
+        .rows = 3,
+        .cols = 3,
+        .data = &pitch_data[0][0],
+    };
+
+    const struct MAT_Matrix roll = {
+        .rows = 3,
+        .cols = 3,
+        .data = &roll_data[0][0],
+    };
+
+    struct MAT_Matrix *const temp = MAT_alloc(3, 3);
+    struct MAT_Matrix *const output = MAT_alloc(3, 3);
+
+    MAT_matrix_matrix_multiplication(&roll, &yaw, temp);
+    MAT_matrix_matrix_multiplication(temp, &pitch, output);
+
+    MAT_free(temp);
+
+    return output;
 }
