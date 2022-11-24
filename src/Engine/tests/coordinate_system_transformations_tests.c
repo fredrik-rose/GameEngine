@@ -3,6 +3,7 @@
 #include "Base/common.h"
 #include "Base/coordinates.h"
 #include "Engine/camera.h"
+#include "LinearAlgebra/matrix.h"
 #include "TestFramework/test_framework.h"
 
 int TF_test_case_status;
@@ -27,7 +28,7 @@ static void test_CST_world_coordinate_to_image_coordinate(void)
         &optical_center,
         &calibration);
 
-    const struct MAT_Matrix *const camera_matrix = CAM_get_camera_matrix(&calibration);
+    struct MAT_Matrix *const camera_matrix = CAM_get_camera_matrix(&calibration);
 
     const struct COORD_Coordinate3D world_coordinate = {
         .x = 6.0,
@@ -49,6 +50,8 @@ static void test_CST_world_coordinate_to_image_coordinate(void)
 
     TF_assert_double_eq(image_coordinate.x, expected_image_coordinate.x, granularity);
     TF_assert_double_eq(image_coordinate.y, expected_image_coordinate.y, granularity);
+
+    MAT_free(camera_matrix);
 }
 
 int main(int argc, char *argv[])

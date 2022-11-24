@@ -13,5 +13,5 @@ target_link_libraries(IlluminaitonTests LINK_PUBLIC
     TestFramework
 )
 
-add_test(NAME CoordinateSystemTransformationsTests COMMAND CommonTests)
+add_test(NAME CoordinateSystemTransformationsTests COMMAND CoordinateSystemTransformationsTests)
 add_test(NAME IlluminaitonTests COMMAND IlluminaitonTests)
