@@ -10,7 +10,7 @@ struct OBJ_Object;
 /**
  * \brief Creates a sphere object
  *
- * The caller must free the object using SPHERE_free() when it is no longer used
+ * The caller must free the object using SPHERE_free() when it is no longer used.
  *
  * \param[in] radius The radius of the sphere
  *
