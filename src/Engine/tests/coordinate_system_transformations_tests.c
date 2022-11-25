@@ -10,6 +10,44 @@ int TF_test_case_status;
 
 static const double granularity = 1e-5;
 
+static void test_CST_linear_transformation(void)
+{
+    double transformation_matrix_data[] = {
+        1.0, 0.0, 0.0,
+        0.0, 2.0, 0.0,
+        0.0, 0.0, 3.0,
+    };
+    struct MAT_Matrix transformation_matrix = {
+        .rows = 3,
+        .cols = 3,
+        .data = &transformation_matrix_data[0]
+    };
+
+    const struct COORD_Coordinate3D coordinate = {
+        .x = 4.0,
+        .y = 5.0,
+        .z = 6.0
+    };
+
+    const struct COORD_Coordinate3D expected_coordinate = {
+        .x = 4.0 * 1.0,
+        .y = 5.0 * 2.0,
+        .z = 6.0 * 3.0
+    };
+
+    struct COORD_Coordinate3D transformed_coordinate = {
+        .x = 0.0,
+        .y = 0.0,
+        .z = 0.0
+    };
+
+    CST_linear_transformation(&coordinate, &transformation_matrix, &transformed_coordinate);
+
+    TF_assert_double_eq(transformed_coordinate.x, expected_coordinate.x, granularity);
+    TF_assert_double_eq(transformed_coordinate.y, expected_coordinate.y, granularity);
+    TF_assert_double_eq(transformed_coordinate.z, expected_coordinate.z, granularity);
+}
+
 static void test_CST_world_coordinate_to_image_coordinate(void)
 {
     const double pixel_size_x = 1.0;
@@ -60,6 +98,7 @@ int main(int argc, char *argv[])
     UNUSED(argv);
 
     TF_test_case test_cases[] = {
+        test_CST_linear_transformation,
         test_CST_world_coordinate_to_image_coordinate,
     };
 

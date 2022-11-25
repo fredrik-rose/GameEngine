@@ -4,7 +4,6 @@
  */
 #include "torus.h"
 
-#include "Base/common.h"
 #include "Base/coordinates.h"
 #include "Engine/coordinate_system_transformations.h"
 #include "Engine/object.h"
@@ -51,40 +50,22 @@ struct OBJ_Object * TORUS_create(
         {
             const double beta = j * RESOLUTION;
 
-            double circle_coordinate_vector_data[] = {
-                outer_radius + (inner_radius * cos(beta)), /* x */
-                inner_radius * sin(beta), /* y */
-                0.0 /* z */
-            };
-            struct VEC_Vector circle_coordinate_vector = {
-                .length = LENGTH(circle_coordinate_vector_data),
-                .data = &circle_coordinate_vector_data[0]
+            const struct COORD_Coordinate3D coordinate = {
+                .x = outer_radius + (inner_radius * cos(beta)),
+                .y = inner_radius * sin(beta),
+                .z = 0.0
             };
 
-            double circle_surface_normal_vector_data[] = {
-                cos(beta), /* x */
-                sin(beta), /* y */
-                0.0 /* z */
+            const struct COORD_Coordinate3D surface_normal = {
+                .x = cos(beta),
+                .y = sin(beta),
+                .z = 0.0
             };
-            struct VEC_Vector circle_surface_normal_vector = {
-                .length = LENGTH(circle_surface_normal_vector_data),
-                .data = &circle_surface_normal_vector_data[0]
-            };
-
-            MAT_matrix_vector_multiplication(rotation_matrix, &circle_coordinate_vector, coordinate_vector);
-            MAT_matrix_vector_multiplication(rotation_matrix, &circle_surface_normal_vector, surface_normal_vector);
 
             assert(index < torus->length);
 
-            struct COORD_Coordinate3D *const current_coordinate = &torus->coordinates[index];
-            current_coordinate->x = VEC_get_element(coordinate_vector, 0);
-            current_coordinate->y = VEC_get_element(coordinate_vector, 1);
-            current_coordinate->z = VEC_get_element(coordinate_vector, 2);
-
-            struct COORD_Coordinate3D *const current_surface_normal = &torus->surface_normals[index];
-            current_surface_normal->x = VEC_get_element(surface_normal_vector, 0);
-            current_surface_normal->y = VEC_get_element(surface_normal_vector, 1);
-            current_surface_normal->z = VEC_get_element(surface_normal_vector, 2);
+            CST_linear_transformation(&coordinate, rotation_matrix, &torus->coordinates[index]);
+            CST_linear_transformation(&surface_normal, rotation_matrix, &torus->surface_normals[index]);
 
             ++index;
         }

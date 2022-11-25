@@ -4,12 +4,41 @@
  */
 #include "coordinate_system_transformations.h"
 
+#include "Base/common.h"
 #include "Base/coordinates.h"
 #include "LinearAlgebra/matrix.h"
 #include "LinearAlgebra/vector.h"
 
 #include <assert.h>
 #include <math.h>
+
+void CST_linear_transformation(
+    const struct COORD_Coordinate3D *coordinate,
+    const struct MAT_Matrix *transformation_matrix,
+    struct COORD_Coordinate3D *transformed_coordinate)
+{
+    double coordinate_vector_data[] = {
+        coordinate->x,
+        coordinate->y,
+        coordinate->z
+    };
+    struct VEC_Vector coordinate_vector = {
+        .length = LENGTH(coordinate_vector_data),
+        .data = &coordinate_vector_data[0]
+    };
+
+    double transformed_coordinate_vector_data[LENGTH(coordinate_vector_data)] = {0.0};
+    struct VEC_Vector transformed_coordinate_vector = {
+        .length = LENGTH(transformed_coordinate_vector_data),
+        .data = &transformed_coordinate_vector_data[0]
+    };
+
+    MAT_matrix_vector_multiplication(transformation_matrix, &coordinate_vector, &transformed_coordinate_vector);
+
+    transformed_coordinate->x = VEC_get_element(&transformed_coordinate_vector, 0);
+    transformed_coordinate->y = VEC_get_element(&transformed_coordinate_vector, 1);
+    transformed_coordinate->z = VEC_get_element(&transformed_coordinate_vector, 2);
+}
 
 void CST_world_coordinate_to_image_coordinate(
     const struct COORD_Coordinate3D *const world_coordinate,

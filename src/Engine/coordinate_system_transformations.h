@@ -20,6 +20,18 @@ struct CST_Rotation3D
 };
 
 /**
+ * \brief Performs a linear transformation of a coordinate
+ *
+ * \param[in] coordinate The coordinate
+ * \param[in] transformation_matrix The 3x3 transformation matrix
+ * \param[out] transformed_coordinate The linearly transformed coordinate
+ */
+void CST_linear_transformation(
+    const struct COORD_Coordinate3D *coordinate,
+    const struct MAT_Matrix *transformation_matrix,
+    struct COORD_Coordinate3D *transformed_coordinate);
+
+/**
  * \brief Convert a world coordinate to an image coordinate.
  *
  * \param[in] world_coordinate The world coordinate
