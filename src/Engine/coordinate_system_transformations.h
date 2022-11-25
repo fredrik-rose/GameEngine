@@ -20,7 +20,7 @@ struct CST_Rotation3D
 };
 
 /**
- * \brief Performs a linear transformation of a coordinate
+ * \brief Perform a linear transformation of a coordinate
  *
  * \param[in] coordinate The coordinate
  * \param[in] transformation_matrix The 3x3 transformation matrix
@@ -29,6 +29,20 @@ struct CST_Rotation3D
 void CST_linear_transformation(
     const struct COORD_Coordinate3D *coordinate,
     const struct MAT_Matrix *transformation_matrix,
+    struct COORD_Coordinate3D *transformed_coordinate);
+
+/**
+ * \brief Perform a affine transformation of a coordinate
+ *
+ * \param[in] coordinate The coordinate
+ * \param[in] transformation_matrix The 3x3 transformation matrix
+ * \param[in] translation The translation of the coordinate
+ * \param[out] transformed_coordinate The affine transformed coordinate
+ */
+void CST_affine_transformation(
+    const struct COORD_Coordinate3D *coordinate,
+    const struct MAT_Matrix *transformation_matrix,
+    const struct COORD_Coordinate3D *translation,
     struct COORD_Coordinate3D *transformed_coordinate);
 
 /**

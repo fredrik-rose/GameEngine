@@ -40,6 +40,16 @@ void CST_linear_transformation(
     transformed_coordinate->z = VEC_get_element(&transformed_coordinate_vector, 2);
 }
 
+void CST_affine_transformation(
+    const struct COORD_Coordinate3D *coordinate,
+    const struct MAT_Matrix *transformation_matrix,
+    const struct COORD_Coordinate3D *translation,
+    struct COORD_Coordinate3D *transformed_coordinate)
+{
+    CST_linear_transformation(coordinate, transformation_matrix, transformed_coordinate);
+    COORD_Coordinate3D_add(transformed_coordinate, translation, transformed_coordinate);
+}
+
 void CST_world_coordinate_to_image_coordinate(
     const struct COORD_Coordinate3D *const world_coordinate,
     const struct MAT_Matrix *const camera_matrix,

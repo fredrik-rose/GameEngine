@@ -148,11 +148,8 @@ static void render_object(
 
     for (int i = 0; i < object->length; ++i)
     {
-        struct COORD_Coordinate3D rotated_position;
-        CST_linear_transformation(&object->coordinates[i], rotation_matrix, &rotated_position);
-
         struct COORD_Coordinate3D world_position;
-        COORD_Coordinate3D_add(&rotated_position, position, &world_position);
+        CST_affine_transformation(&object->coordinates[i], rotation_matrix, position, &world_position);
 
         struct COORD_Coordinate3D surface_normal;
         CST_linear_transformation(&object->surface_normals[i], rotation_matrix, &surface_normal);
