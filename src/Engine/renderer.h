@@ -7,6 +7,8 @@
 
 #include "Base/coordinates.h"
 
+#include "coordinate_system_transformations.h"
+
 struct CAM_CameraParameters;
 
 struct REND_Renderer;
@@ -17,7 +19,8 @@ struct REND_Renderer;
 struct REND_ObjectWithPosition
 {
     const struct OBJ_Object *const object; /**< Arbitrary object */
-    struct COORD_Coordinate3D position; /**< The position of the object ion the world */
+    struct COORD_Coordinate3D position; /**< The position of the object in the world */
+    struct CST_Rotation3D rotation; /**< The rotation of the object in the world */
 };
 
 /**

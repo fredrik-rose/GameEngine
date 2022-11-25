@@ -7,8 +7,10 @@
 #include "Base/common.h"
 #include "Base/coordinates.h"
 #include "Engine/camera.h"
+#include "Engine/coordinate_system_transformations.h"
 #include "Engine/renderer.h"
 #include "Objects/sphere.h"
+#include "Objects/torus.h"
 
 /* Compensate for the difference in width and height for terminal characters by setting different
  * pixel size in the x and y direction. */
@@ -45,11 +47,17 @@ void GAME_run(void)
         .y = 0.0,
         .z = 3.0
     };
+    const struct CST_Rotation3D sphere_rotation = {
+        .pitch = 0.0,
+        .yaw = 0.0,
+        .roll = 0.0
+    };
 
     struct REND_ObjectWithPosition objects[] = {
         {
             .object = sphere,
-            .position = sphere_position
+            .position = sphere_position,
+            .rotation = sphere_rotation
         }
     };
     struct REND_Objects model = {

@@ -141,20 +141,29 @@ static void render_object(
     struct REND_Renderer *const renderer,
     const struct COORD_Coordinate3D *const light_source,
     const struct OBJ_Object *const object,
-    const struct COORD_Coordinate3D *const position)
+    const struct COORD_Coordinate3D *const position,
+    const struct CST_Rotation3D *const rotation)
 {
+    struct MAT_Matrix *const rotation_matrix = CST_get_extrinsic_rotation_matrix(rotation);
+
     for (int i = 0; i < object->length; ++i)
     {
-        const struct COORD_Coordinate3D *const object_position = &object->coordinates[i];
-        struct COORD_Coordinate3D world_position;
-        COORD_Coordinate3D_add(object_position, position, &world_position);
+        struct COORD_Coordinate3D rotated_position;
+        CST_linear_transformation(&object->coordinates[i], rotation_matrix, &rotated_position);
 
-        const struct COORD_Coordinate3D *const surface_normal = &object->surface_normals[i];
-        const double illumination = ILL_get_illumination(light_source, &world_position, surface_normal);
+        struct COORD_Coordinate3D world_position;
+        COORD_Coordinate3D_add(&rotated_position, position, &world_position);
+
+        struct COORD_Coordinate3D surface_normal;
+        CST_linear_transformation(&object->surface_normals[i], rotation_matrix, &surface_normal);
+
+        const double illumination = ILL_get_illumination(light_source, &world_position, &surface_normal);
         const char color = convert_illumination_to_pixel_color(illumination);
 
         render_pixel(renderer, &world_position, color);
     }
+
+    MAT_free(rotation_matrix);
 }
 
 struct REND_Renderer * REND_create(
@@ -183,7 +192,12 @@ void REND_render(
     {
         const struct REND_ObjectWithPosition *const object_with_position = &objects->objects[i];
 
-        render_object(renderer, light_source, object_with_position->object, &object_with_position->position);
+        render_object(
+            renderer,
+            light_source,
+            object_with_position->object,
+            &object_with_position->position,
+            &object_with_position->rotation);
     }
 
     draw_frame(renderer->frame_buffer);
