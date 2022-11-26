@@ -1,4 +1,4 @@
-#include "../coordinate_system_transformations.h"
+#include "coordinate_system_transformations.h"
 
 #include "Base/common.h"
 #include "Base/coordinates.h"
@@ -57,6 +57,16 @@ static void test_CST_world_coordinate_to_image_coordinate(void)
         .x = 400,
         .y = 500
     };
+    struct COORD_Coordinate3D camera_translation = {
+        .x = 0.0,
+        .y = 0.0,
+        .z = 0.0
+    };
+    struct CST_Rotation3D camera_rotation = {
+        .pitch = 0.0,
+        .yaw = 0.0,
+        .roll = 0.0
+    };
     struct CAM_CameraParameters calibration;
 
     CAM_get_camera_calibration(
@@ -64,6 +74,8 @@ static void test_CST_world_coordinate_to_image_coordinate(void)
         pixel_size_y,
         focal_length,
         &optical_center,
+        &camera_translation,
+        &camera_rotation,
         &calibration);
 
     struct MAT_Matrix *const camera_matrix = CAM_get_camera_matrix(&calibration);

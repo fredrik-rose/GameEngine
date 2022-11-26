@@ -38,12 +38,26 @@ void GAME_run(
         .y = SCREEN_HEIGHT / 2.0
     };
 
+    struct COORD_Coordinate3D camera_translation = {
+        .x = 0.0,
+        .y = 0.0,
+        .z = 0.0
+    };
+
+    struct CST_Rotation3D camera_rotation = {
+        .pitch = 0.0,
+        .yaw = 0.0,
+        .roll = 0.0
+    };
+
     struct CAM_CameraParameters calibration;
     CAM_get_camera_calibration(
         PIXEL_SIZE_X,
         PIXEL_SIZE_Y,
         FOCAL_LENGTH,
         &optical_center,
+        &camera_translation,
+        &camera_rotation,
         &calibration);
 
     const struct COORD_Coordinate3D light_source = {
