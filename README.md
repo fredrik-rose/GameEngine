@@ -68,9 +68,10 @@ ctest -T memcheck --verbose
 
 Note that the `Debug` configurations is used here. This configuration includes debug information
 which makes it easier to find where a particular problem occurred as it will contain a detailed
-call stack. Unfortunately valgrind is not compatible with the sanitizers used in the
-`RelWithDebInfo` configuration. To get full coverage of the dynamic code analyzers it is therefore
-required to run the test under two configurations (`RelWithDebInfo` and `Debug` with valgrind).
+call stack. Asserts are enabled in this configuration. Unfortunately valgrind is not compatible with
+thes anitizers used in the `RelWithDebInfo` configuration. To get full coverage of the dynamic code
+analyzers it is therefore required to run the test under two configurations (`RelWithDebInfo` and
+`Debug` with valgrind).
 
 ### Requirements
 
