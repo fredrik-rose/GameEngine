@@ -18,7 +18,7 @@ struct REND_Renderer;
  */
 struct REND_ObjectWithPosition
 {
-    const struct OBJ_Object *const object; /**< Arbitrary object */
+    const struct OBJ_Object *object; /**< Arbitrary object */
     struct COORD_Coordinate3D position; /**< The position of the object in the world */
     struct CST_Rotation3D rotation; /**< The rotation of the object in the world */
 };

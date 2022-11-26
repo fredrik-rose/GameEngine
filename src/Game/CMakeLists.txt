@@ -2,6 +2,8 @@ add_library(Game
     game.c
 )
 
+target_link_libraries(Game LINK_PRIVATE m)
+
 target_link_libraries(Game LINK_PUBLIC
     Base
     Engine
