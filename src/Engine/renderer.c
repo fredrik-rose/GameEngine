@@ -6,6 +6,7 @@
 
 #include "camera.h"
 #include "coordinate_system_transformations.h"
+#include "frame_synchronizer.h"
 #include "illumination.h"
 #include "object.h"
 
@@ -31,6 +32,10 @@ struct REND_Renderer
      */
     struct MAT_Matrix *z_buffer;
     struct MAT_Matrix *camera_matrix; /**< The camera matrix/calibration */
+    /**
+     * The frame synchronizer, makes sure a certain frame rate is achieved
+     */
+    struct SYNC_Frame_Synchronizer *frame_synchronizer;
 };
 
 /**
@@ -166,13 +171,15 @@ static void render_object(
 struct REND_Renderer * REND_create(
     const struct CAM_CameraParameters *const calibration,
     const int screen_width,
-    const int screen_height)
+    const int screen_height,
+    const double fps)
 {
     struct REND_Renderer *const renderer = calloc(1, sizeof(*renderer));
 
     renderer->frame_buffer = MAT_alloc(screen_height, screen_width);
     renderer->z_buffer = MAT_alloc(screen_height, screen_width);
     renderer->camera_matrix = CAM_get_camera_matrix(calibration);
+    renderer->frame_synchronizer = SYNC_create(fps);
 
     return renderer;
 }
@@ -197,12 +204,15 @@ void REND_render(
             &object_with_position->rotation);
     }
 
+    SYNC_sync(renderer->frame_synchronizer);
+
     draw_frame(renderer->frame_buffer);
 }
 
 void REND_destroy(
     struct REND_Renderer *const renderer)
 {
+    SYNC_destroy(renderer->frame_synchronizer);
     MAT_free(renderer->camera_matrix);
     MAT_free(renderer->z_buffer);
     MAT_free(renderer->frame_buffer);

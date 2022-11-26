@@ -38,13 +38,15 @@ struct REND_Objects
  * \param[in] calibration The camera parameters/calibration
  * \param[in] screen_width The screen width
  * \param[in] screen_height The screen height
+ * \param[in] fps The frame rate [frames / s]
  *
  * \return Renderer
  */
 struct REND_Renderer * REND_create(
     const struct CAM_CameraParameters *calibration,
     int screen_width,
-    int screen_height);
+    int screen_height,
+    double fps);
 
 /**
  * \brief Destroy a renderer
