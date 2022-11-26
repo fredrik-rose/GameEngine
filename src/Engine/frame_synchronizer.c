@@ -5,6 +5,7 @@
 #include "frame_synchronizer.h"
 
 #include <assert.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <sys/time.h>
 #include <time.h>
@@ -55,6 +56,12 @@ void SYNC_sync(
         };
 
         nanosleep(&sleep_time, NULL);
+    }
+    else
+    {
+        const double current_fps = (1.0 / (double)elapsed) * 1e9;
+
+        printf("WARNING: Desired frame rate could not be achieved, currently %.2lf fps\n", current_fps);
     }
 
     gettimeofday(&frame_synchronizer->previous_time, 0);
