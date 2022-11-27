@@ -1,6 +1,32 @@
 # Game Engine
+                                          $$@@@@@$$$##!
+                                       #$@@@@@@@@@@@@$$#*!
+                                      $$$$$@@@@@@@@@@@@$$#*!
+                                     #$$$$$$@@@@@@@@@@@@@$$#*=
+                                    *#$######$$$@@@@@@@@@$$$#*!;
+                                    ####**!!=!*##$@@@@@@@$$$##*!;                     ######*!
+                                    ####*!===;:~ *#$@@@@@$$$$#*!=;                 $@@@@@$$$##*!=
+                                    ####***!==;:   #$$@@@$$$$##*!=               $@@@@@@@@$$###*!=:
+                                    *######*!!==    #$$$$$$$$##*!=;              $@@@@@@@$$$###*!=;
+                                     #$$$####*#*=    #$$$$$$###*!=;              $@@@@@@$$$###**!=;
+                                     *$$$$$$@$$#*=    #$$$$####*!=;~             $$@@@@$$$###**!!=;
+                                      #$$@@@@@@@$#*   ##$$####**!=;:             *##$$$###****!==;~
+                                       #$@@@@@@@@@$$#!######***!!=;~               !*****!!!!=;;:
+                                        #$@$@@@@@@@$$#######***!=;:                   ;;;;;;:~
+                                         *$$$$@@@@@$$$####***!!==;:
+                                           *$$$$$$$$$$###**!!!==;:
+                                            ;*##$$$$###***!!==;:~
+                                               =!******!!===;:~
+                                                   :;;;;:::
 
-A simple game engine.
+A simple game engine. It contains a graphics rendering pipeline that renders a model consisting of
+3D objects, a camera and a light source to a 2D screen. The objects are illuminated based on the
+their relative position to the light source. It is possible to define an arbitrary camera position
+and rotation in the world. As this is just a simple game engine the screen output "pixels" are
+ASCII characters printed to the terminal.
+
+The engine lacks some important modules that are usually part of a game engine like physics, audio
+and collision handling.
 
 ## Usage
 
