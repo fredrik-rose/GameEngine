@@ -46,14 +46,19 @@ call stack.
 #### Test Coverage
 
 Test coverage is a useful tool that measures how much of the source code is covered by tests. To
-build and run test coverage, run everything in the previous section and then run the following
-command.
+build and run test coverage, run the following command.
 
 ```
+cmake -S <path to GameEngine> -B build -DCMAKE_BUILD_TYPE=RelWithDebInfo
+cd build
+make
+ctest --verbose -E GameTests
 make lcov
 ```
 
-The test coverage report can be found in `lcov/index.html`.
+Note that the `GameTests` is excluded as it does not perform a proper functionality test and it is
+unfair to include it in the coverage report. The test coverage report can be found in
+`lcov/index.html`.
 
 #### Test under valgrind
 
