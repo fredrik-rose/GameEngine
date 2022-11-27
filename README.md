@@ -108,14 +108,69 @@ sudo apt install lcov -y
 sudo apt install iwyu -y
 ```
 
-## Test Framework
+## Architecture
 
-A simple test framework has been implemented. It lacks a lot of features like setup/teardown,
-fixtures, mocks, etc., but using it in conjunction with `ctest` it is sufficient for a small project
-like this. There exists a lot of test frameworks for C but not really any "standard" one that most
+This chapter describes all modules of the game engine.
+
+### Base
+
+Contains utilizes needed by most other modules. This includes math functions and helper macros to
+e.g. specify unused function parameters and get the length of an array.
+
+### Engine
+
+This is the core of the game engine. It is build of of several units.
+
+#### Camera
+
+The camera of the game. Defines the camera intrinsic (focal length, principal point, etc.) and
+extrinsic (camera position in relation to the world coordinate system) calibration.
+
+#### Coordinate System Transformations
+
+Provides functionality to convert 3D coordinates from one coordinate frame to another (linear and
+affine transformations). It can also convert a 3D world coordinate to a 2D image coordinate.
+
+#### Frame Synchronizer
+
+A faster or slower computer should not make the time go faster or slower in the game. This unit
+makes sure the game run in a certain constant frame rate.
+
+#### Illumination
+
+Handles the illumination of objects.
+
+#### Object
+
+The interface of a 3D objects.
+
+#### Renderer
+
+The heart of the engine. This unit takes a model consisting of 3D objects and their positions, a
+camera calibration and a light source as input. The input is rendered and output to the screen. To
+accomplish this it uses all other units of the Engine module.
+
+<img src="img/Renderer_pipeline.png" width="1200"/>
+
+### Game
+
+A game implemented using the game engine. Well, it is not really a game, it just a sphere orbiting
+a rotating torus ("donut").
+
+### Linear Algebra
+
+Defines matrix, vector, and function that operates on these types. Some example functions are
+matrix matrix multiplication, matrix vector multiplication, matrix transpose, vector normalization
+and vector dot product.
+
+### Test Framework
+
+A simple "home made" test framework. It lacks a lot of features like setup/teardown, fixtures,
+mocks, etc., but using it in conjunction with `ctest` it is sufficient for a small project like
+this. There exists a lot of test frameworks for C but not really any "standard" one that most
 project uses.
 
-### Example
+#### Example
 
 The following is an example of a test suite that uses the framework.
 
