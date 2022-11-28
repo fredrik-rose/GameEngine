@@ -1,23 +1,6 @@
 # Game Engine
-                                          $$@@@@@$$$##!
-                                       #$@@@@@@@@@@@@$$#*!
-                                      $$$$$@@@@@@@@@@@@$$#*!
-                                     #$$$$$$@@@@@@@@@@@@@$$#*=
-                                    *#$######$$$@@@@@@@@@$$$#*!;
-                                    ####**!!=!*##$@@@@@@@$$$##*!;                     ######*!
-                                    ####*!===;:~ *#$@@@@@$$$$#*!=;                 $@@@@@$$$##*!=
-                                    ####***!==;:   #$$@@@$$$$##*!=               $@@@@@@@@$$###*!=:
-                                    *######*!!==    #$$$$$$$$##*!=;              $@@@@@@@$$$###*!=;
-                                     #$$$####*#*=    #$$$$$$###*!=;              $@@@@@@$$$###**!=;
-                                     *$$$$$$@$$#*=    #$$$$####*!=;~             $$@@@@$$$###**!!=;
-                                      #$$@@@@@@@$#*   ##$$####**!=;:             *##$$$###****!==;~
-                                       #$@@@@@@@@@$$#!######***!!=;~               !*****!!!!=;;:
-                                        #$@$@@@@@@@$$#######***!=;:                   ;;;;;;:~
-                                         *$$$$@@@@@$$$####***!!==;:
-                                           *$$$$$$$$$$###**!!!==;:
-                                            ;*##$$$$###***!!==;:~
-                                               =!******!!===;:~
-                                                   :;;;;:::
+
+<img src="img/game.png" width="500"/>
 
 A simple game engine. It contains a graphics rendering pipeline that renders a model consisting of
 3D objects, a camera and a light source to a 2D screen. The objects are illuminated based on the
@@ -71,6 +54,10 @@ contain a detailed call stack.
 
 #### Test Coverage
 
+<img src="img/lcov_1.png" width="1000"/>
+
+<img src="img/lcov_2.png" width="1000"/>
+
 Test coverage is a useful tool that measures how much of the source code is covered by tests. To
 build and run test coverage, run the following command.
 
@@ -104,6 +91,8 @@ detailed call stack. Unfortunately valgrind is not compatible with the sanitizer
 to run the test under two configurations (`Debug` and `RelWithDebInfo` with valgrind).
 
 ### Build Profile
+
+<img src="img/build_trace.png" width="1000"/>
 
 The [ninja tracing](https://github.com/nico/ninjatracing) tool can be used to profile the build
 performance. With this tool it is easy to see which parts of a project that takes the most time to
@@ -210,6 +199,8 @@ perf annotate -i perf.data -s MAT_matrix_vector_multiplication
 ```
 
 #### Flame Graphs
+
+<img src="img/flamegraph.svg" width="1000"/>
 
 [Flame graphs](https://www.brendangregg.com/flamegraphs.html) is a neat
 visualization of perf output. Download the flame graphs tool
@@ -383,6 +374,8 @@ int main(void)
 ```
 
 ## Dependency Graph
+
+<img src="img/dependency_graph.png" width="1000"/>
 
 It is possible to generate dependency graphs using `cmake`. To generate this graph run `cmake` as
 usual but append `--graphviz=dependendy_graph.dot` to the command. An image of the graph can then
