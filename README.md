@@ -56,18 +56,18 @@ The generated documentation can be found in `html/index.html`.
 To build and run the tests run the following commands.
 
 ```
-cmake -S <path to GameEngine> -B build -DCMAKE_BUILD_TYPE=RelWithDebInfo
+cmake -S <path to GameEngine> -B build -DCMAKE_BUILD_TYPE=Debug
 cd build
 make
 ctest --verbose
 ```
 
 Note that `ctest` have other flags that can e.g. select which tests to run. Also note that is is
-built using the `RelWithDebInfo` configuration. This includes address sanitizer (asan) and
-undefined behavior sanitizer (ubsan). These are runtime instrumentations that will detect memory
-errors and undefined behavior. The `RelWithDebInfo` configuration also includes debug information
-which makes it easier to find where a particular problem occurred as it will contain a detailed
-call stack.
+built using the `Debug` configuration. This includes address sanitizer (asan) and undefined behavior
+sanitizer (ubsan). These are runtime instrumentations that will detect memory errors and undefined
+behavior. Asserts are also enabled in this configuration. The `Debug` configuration also includes
+debug information which makes it easier to find where a particular problem occurred as it will
+contain a detailed call stack.
 
 #### Test Coverage
 
@@ -75,7 +75,7 @@ Test coverage is a useful tool that measures how much of the source code is cove
 build and run test coverage, run the following command.
 
 ```
-cmake -S <path to GameEngine> -B build -DCMAKE_BUILD_TYPE=RelWithDebInfo
+cmake -S <path to GameEngine> -B build -DCMAKE_BUILD_TYPE=Debug
 cd build
 make
 ctest --verbose -E GameTests
@@ -91,18 +91,17 @@ unfair to include it in the coverage report. The test coverage report can be fou
 To build and run the tests under valgrind run the following commands.
 
 ```
-cmake -S <path to GameEngine> -B build -DCMAKE_BUILD_TYPE=Debug
+cmake -S <path to GameEngine> -B build -DCMAKE_BUILD_TYPE=RelWithDebInfo
 cd build
 make
 ctest -T memcheck --verbose
 ```
 
-Note that the `Debug` configurations is used here. This configuration includes debug information
-which makes it easier to find where a particular problem occurred as it will contain a detailed
-call stack. Asserts are enabled in this configuration. Unfortunately valgrind is not compatible with
-thes anitizers used in the `RelWithDebInfo` configuration. To get full coverage of the dynamic code
-analyzers it is therefore required to run the test under two configurations (`RelWithDebInfo` and
-`Debug` with valgrind).
+Note that the `RelWithDebInfo` configurations is used here. This configuration includes debug
+information which makes it easier to find where a particular problem occurred as it will contain a
+detailed call stack. Unfortunately valgrind is not compatible with the sanitizers used in the
+`Debug` configuration. To get full coverage of the dynamic code analyzers it is therefore required
+to run the test under two configurations (`Debug` and `RelWithDebInfo` with valgrind).
 
 ### Build Profile
 

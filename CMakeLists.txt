@@ -11,7 +11,7 @@ set(CMAKE_C_INCLUDE_WHAT_YOU_USE "${IWYU_PATH};-I/usr/lib/llvm-10/lib/clang/10.0
 
 set(CMAKE_C_STANDARD 11)
 
-if (CMAKE_BUILD_TYPE STREQUAL "RelWithDebInfo")
+if (CMAKE_BUILD_TYPE STREQUAL "Debug")
     list(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
     include (lcov)
 endif()
@@ -36,17 +36,18 @@ add_compile_options(
     -Wconversion
     -Wunreachable-code
     "$<$<CONFIG:RELWITHDEBINFO>:-fno-omit-frame-pointer>"
-    "$<$<CONFIG:RELWITHDEBINFO>:-fsanitize=address>"
-    "$<$<CONFIG:RELWITHDEBINFO>:-fsanitize=undefined>"
-    "$<$<CONFIG:RELWITHDEBINFO>:-fprofile-arcs>"
-    "$<$<CONFIG:RELWITHDEBINFO>:-ftest-coverage>"
+    "$<$<CONFIG:DEBUG>:-fno-omit-frame-pointer>"
+    "$<$<CONFIG:DEBUG>:-fsanitize=address>"  # Address sanitizer
+    "$<$<CONFIG:DEBUG>:-fsanitize=undefined>"  # Undefined behavior sanitizer
+    "$<$<CONFIG:DEBUG>:-fprofile-arcs>"  # Needed for coverage
+    "$<$<CONFIG:DEBUG>:-ftest-coverage>"  # Needed for coverage
 )
 
 add_link_options(
-    "$<$<CONFIG:RELWITHDEBINFO>:-fsanitize=address>"
-    "$<$<CONFIG:RELWITHDEBINFO>:-fsanitize=undefined>"
-    "$<$<CONFIG:RELWITHDEBINFO>:-fprofile-arcs>"
-    "$<$<CONFIG:RELWITHDEBINFO>:-ftest-coverage>"
+    "$<$<CONFIG:DEBUG>:-fsanitize=address>"  # Address sanitizer
+    "$<$<CONFIG:DEBUG>:-fsanitize=undefined>"  # Undefined behavior sanitizer
+    "$<$<CONFIG:DEBUG>:-fprofile-arcs>"  # Needed for coverage
+    "$<$<CONFIG:DEBUG>:-ftest-coverage>"  # Needed for coverage
 )
 
 find_program(CMAKE_C_CPPCHECK NAMES cppcheck)
