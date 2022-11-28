@@ -104,12 +104,37 @@ thes anitizers used in the `RelWithDebInfo` configuration. To get full coverage 
 analyzers it is therefore required to run the test under two configurations (`RelWithDebInfo` and
 `Debug` with valgrind).
 
+### Build Profile
+
+The [ninja tracing](https://github.com/nico/ninjatracing) tool can be used to profile the build
+performance. With this tool it is easy to see which parts of a project that takes the most time to
+build and would be a good subject to optimizations, like refactoring or reducing the number of
+includes.
+
+The ninja build system is required for this tool to work. It is easy to switch from make to ninja
+in cmake, just add `-G Ninja` to the cmake command.
+
+```
+cmake -G Ninja -S <path to GameEngine> -B build -DCMAKE_BUILD_TYPE=Release
+cd build
+ninja
+NINJATRACING=<path to ninjatracing>
+python3 $NINJATRACING/ninjatracing.py .ninja_log > cmake_build_trace.json
+```
+
+Note that this can be done for any configuration. To view the file open Chrome and enter
+`about:tracing`, then drag and drop the `cmake_build_trace.json` file.
+
+Switching to ninja for all kinds of builds might actually be a good idea since the ninja build
+system is faster than make.
+
 ### Requirements
 
 The following are required
 
 * gcc
 * cmake
+* ninja
 * doxygen
 * graphviz
 * cppcheck
@@ -125,6 +150,7 @@ sudo apt-get update && sudo apt-get upgrade -y
 sudo apt autoremove -y
 sudo apt-get install gcc -y
 sudo apt-get install cmake -y
+sudo apt install ninja-build -y
 sudo apt-get install doxygen -y
 sudo apt install graphviz -y
 sudo apt-get install cppcheck -y
