@@ -67,7 +67,7 @@ void CST_world_coordinate_to_image_coordinate(
 
     const double z = VEC_get_element(homogeneous_image_coordinate, 2);
 
-    assert(z > 0.0);
+    assert(z > 0.0); // LCOV_EXCL_LINE
 
     image_coordinate->x = VEC_get_element(homogeneous_image_coordinate, 0) / z;
     image_coordinate->y = VEC_get_element(homogeneous_image_coordinate, 1) / z;

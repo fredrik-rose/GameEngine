@@ -37,8 +37,8 @@ void MAT_set_element(
     const int col,
     const double value)
 {
-    assert(row < matrix->rows);
-    assert(col < matrix->cols);
+    assert(row < matrix->rows); // LCOV_EXCL_LINE
+    assert(col < matrix->cols); // LCOV_EXCL_LINE
 
     matrix->data[(matrix->cols * row) + col] = value;
 } // LCOV_EXCL_LINE
@@ -61,8 +61,8 @@ double MAT_get_element(
     const int row,
     const int col)
 {
-    assert(row < matrix->rows);
-    assert(col < matrix->cols);
+    assert(row < matrix->rows); // LCOV_EXCL_LINE
+    assert(col < matrix->cols); // LCOV_EXCL_LINE
 
     return matrix->data[(matrix->cols * row) + col];
 }
@@ -90,9 +90,9 @@ void MAT_matrix_matrix_multiplication(
     const struct MAT_Matrix *const b,
     struct MAT_Matrix *const output)
 {
-    assert(b->rows == a->cols);
-    assert(output->rows == a->rows);
-    assert(output->cols == b->cols);
+    assert(b->rows == a->cols); // LCOV_EXCL_LINE
+    assert(output->rows == a->rows); // LCOV_EXCL_LINE
+    assert(output->cols == b->cols); // LCOV_EXCL_LINE
 
     for (int r = 0; r < output->rows; ++r)
     {
@@ -115,8 +115,8 @@ void MAT_matrix_vector_multiplication(
     const struct VEC_Vector *const vector,
     struct VEC_Vector *const output)
 {
-    assert(vector->length == matrix->cols);
-    assert(output->length == matrix->rows);
+    assert(vector->length == matrix->cols); // LCOV_EXCL_LINE
+    assert(output->length == matrix->rows); // LCOV_EXCL_LINE
 
     for (int i = 0; i < output->length; ++i)
     {

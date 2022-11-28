@@ -111,8 +111,8 @@ static void render_pixel(
     const struct COORD_Coordinate3D *const world_coordinate,
     const char color)
 {
-    assert(renderer->frame_buffer->rows == renderer->z_buffer->rows);
-    assert(renderer->frame_buffer->cols == renderer->z_buffer->cols);
+    assert(renderer->frame_buffer->rows == renderer->z_buffer->rows); // LCOV_EXCL_LINE
+    assert(renderer->frame_buffer->cols == renderer->z_buffer->cols); // LCOV_EXCL_LINE
 
     const double distance = world_coordinate->z;
 

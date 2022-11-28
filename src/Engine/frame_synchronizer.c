@@ -22,7 +22,7 @@ struct SYNC_Frame_Synchronizer
 struct SYNC_Frame_Synchronizer * SYNC_create(
     double fps)
 {
-    assert(fps > 0.0);
+    assert(fps > 0.0); // LCOV_EXCL_LINE
 
     struct SYNC_Frame_Synchronizer *const frame_synchronizer = calloc(1, sizeof(*frame_synchronizer));
 

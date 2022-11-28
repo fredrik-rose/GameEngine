@@ -20,7 +20,7 @@ struct OBJ_Object * SPHERE_create(
     const int steps = (int)step_size;
     struct OBJ_Object *const sphere = calloc(1, sizeof(*sphere));
 
-    assert(fabs((steps * RESOLUTION) - (2.0 * M_PI)) < (2 * RESOLUTION));
+    assert(fabs((steps * RESOLUTION) - (2.0 * M_PI)) < (2 * RESOLUTION)); // LCOV_EXCL_LINE
 
     sphere->length = steps * steps;
     sphere->coordinates = calloc((size_t)sphere->length, sizeof(*sphere->coordinates));
@@ -41,7 +41,7 @@ struct OBJ_Object * SPHERE_create(
                 .z = radius * cos(fi)
             };
 
-            assert(index < sphere->length);
+            assert(index < sphere->length); // LCOV_EXCL_LINE
 
             sphere->coordinates[index] = coordinate;
             /* Radius is not needed for the surface normal but it does not change the direction of
@@ -52,7 +52,7 @@ struct OBJ_Object * SPHERE_create(
         }
     }
 
-    assert(index == sphere->length);
+    assert(index == sphere->length); // LCOV_EXCL_LINE
 
     return sphere;
 }
