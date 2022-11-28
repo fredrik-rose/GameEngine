@@ -131,7 +131,8 @@ system is faster than make.
 
 A very useful tool for performance profiling is
 [perf](https://perf.wiki.kernel.org/index.php/Main_Page). It can profile a lot of "events" like
-clock cycles, branch misses, cache misses, etc.
+clock cycles, branch misses, cache misses, etc. A useful first step might however be to use the
+`top` command while running the application to see how much resources it uses.
 
 The application must be built with the following flags:
 
