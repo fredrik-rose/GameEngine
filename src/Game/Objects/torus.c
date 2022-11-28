@@ -14,7 +14,7 @@
 #include <math.h>
 #include <stdlib.h>
 
-#define RESOLUTION (0.01) /* Radians */
+#define RESOLUTION (0.02) /* Radians */
 
 struct OBJ_Object * TORUS_create(
     const double inner_radius,

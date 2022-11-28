@@ -1,8 +1,8 @@
 #include "Base/common.h"
 #include "Game/Game.h"
 
-#define FPS (5.0)
-#define STEPS (100)
+#define FPS (20.0)
+#define STEPS (1000)
 
 int main(int argc, char *argv[])
 {
