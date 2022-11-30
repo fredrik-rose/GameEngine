@@ -392,3 +392,8 @@ dot -Tpng -o build/dependendy_graph.png dependendy_graph.dot
   constant surface normals. Then it is possible to test if the projections get the correct size in
   the image and that they occlude eachother correctly. It is also a good idea to test that objects
   behind the camera or outside the frame are handled correctly.
+* Use threads to speed up rendering of objects
+* Add tools that can extract heap usage (valgrind Massif) and stack usage (maybe use gcc
+  -fstack-usage in combination with [cflow](https://www.gnu.org/software/cflow/manual/cflow.html)
+  and write a Python script that walks the cflow graph and collects stack usage information from
+  the compiler output).
