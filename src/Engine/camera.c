@@ -2,10 +2,10 @@
  * \file
  * \brief Camera implementation
  */
-#include "camera.h"
-
-#include "Base/coordinates.h"
-#include "LinearAlgebra/matrix.h"
+#include <Base/coordinates.h>
+#include <Engine/camera.h>
+#include <Engine/coordinate_system_transformations.h>
+#include <LinearAlgebra/matrix.h>
 
 static struct MAT_Matrix * get_intrinsic_camera_matrix(
     const struct CAM_IntrinsicParameters *const calibration)

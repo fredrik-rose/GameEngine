@@ -4,10 +4,10 @@
  */
 #include "illumination.h"
 
-#include "Base/common.h"
-#include "Base/coordinates.h"
-#include "Base/math_functions.h"
-#include "LinearAlgebra/vector.h"
+#include <Base/common.h>
+#include <Base/coordinates.h>
+#include <Base/math_functions.h>
+#include <LinearAlgebra/vector.h>
 
 double ILL_get_illumination(
     const struct COORD_Coordinate3D *const light_source,

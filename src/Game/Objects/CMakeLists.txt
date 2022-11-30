@@ -10,6 +10,4 @@ target_link_libraries(Objects PRIVATE
     LinearAlgebra
 )
 
-target_include_directories(Objects PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
-
 add_subdirectory(tests)

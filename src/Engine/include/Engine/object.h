@@ -5,7 +5,7 @@
 #ifndef ENGINE_OBJECT_H
 #define ENGINE_OBJECT_H
 
-#include "Base/coordinates.h"
+#include <Base/coordinates.h>
 
 /**
  * \brief A 3D object

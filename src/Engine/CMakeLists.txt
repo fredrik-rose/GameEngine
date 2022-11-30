@@ -15,6 +15,6 @@ target_link_libraries(Engine PUBLIC
     Base
 )
 
-target_include_directories(Engine PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+target_include_directories(Engine PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 add_subdirectory(tests)

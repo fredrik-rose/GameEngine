@@ -9,7 +9,7 @@ target_link_libraries(Game PRIVATE
     Objects
 )
 
-target_include_directories(Game PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+target_include_directories(Game PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 add_subdirectory(Objects)
 add_subdirectory(profile)

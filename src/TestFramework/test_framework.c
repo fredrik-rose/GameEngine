@@ -2,7 +2,7 @@
  * \file
  * \brief Implementation of a minimalistic unit test framework
  */
-#include "test_framework.h"
+#include <TestFramework/test_framework.h>
 
 #include <stdio.h>
 

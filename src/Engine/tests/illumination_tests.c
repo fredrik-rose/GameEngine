@@ -1,8 +1,8 @@
 #include "../illumination.h"
 
-#include "Base/common.h"
-#include "Base/coordinates.h"
-#include "TestFramework/test_framework.h"
+#include <Base/common.h>
+#include <Base/coordinates.h>
+#include <TestFramework/test_framework.h>
 
 int TF_test_case_status;
 

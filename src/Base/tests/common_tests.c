@@ -1,6 +1,5 @@
-#include "../common.h"
-
-#include "TestFramework/test_framework.h"
+#include <Base/common.h>
+#include <TestFramework/test_framework.h>
 
 int TF_test_case_status;
 

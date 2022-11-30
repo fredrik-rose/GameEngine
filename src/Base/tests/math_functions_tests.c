@@ -1,7 +1,6 @@
-#include "../math_functions.h"
-
-#include "Base/common.h"
-#include "TestFramework/test_framework.h"
+#include <Base/common.h>
+#include <Base/math_functions.h>
+#include <TestFramework/test_framework.h>
 
 int TF_test_case_status;
 

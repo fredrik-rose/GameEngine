@@ -4,8 +4,8 @@
  */
 #include "sphere.h"
 
-#include "Base/coordinates.h"
-#include "Engine/object.h"
+#include <Base/coordinates.h>
+#include <Engine/object.h>
 
 #include <assert.h>
 #include <math.h>

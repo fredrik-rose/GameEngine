@@ -2,7 +2,7 @@
  * \file
  * \brief Coordinates implementation
  */
-#include "coordinates.h"
+#include <Base/coordinates.h>
 
 void COORD_Coordinate3D_add(
     const struct COORD_Coordinate3D *const a,

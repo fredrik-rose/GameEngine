@@ -2,15 +2,15 @@
  * \file
  * \brief Game implementation
  */
-#include "game.h"
-
-#include "Base/common.h"
-#include "Base/coordinates.h"
-#include "Engine/camera.h"
-#include "Engine/coordinate_system_transformations.h"
-#include "Engine/renderer.h"
 #include "Objects/sphere.h"
 #include "Objects/torus.h"
+
+#include <Base/common.h>
+#include <Base/coordinates.h>
+#include <Engine/camera.h>
+#include <Engine/coordinate_system_transformations.h>
+#include <Engine/renderer.h>
+#include <Game/game.h>
 
 #include <math.h>
 

@@ -1,8 +1,7 @@
-#include "../matrix.h"
-#include "../vector.h"
-
-#include "Base/common.h"
-#include "TestFramework/test_framework.h"
+#include <Base/common.h>
+#include <LinearAlgebra/matrix.h>
+#include <LinearAlgebra/vector.h>
+#include <TestFramework/test_framework.h>
 
 int TF_test_case_status;
 

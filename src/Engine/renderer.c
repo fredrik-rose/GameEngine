@@ -2,18 +2,17 @@
  * \file
  * \brief Renderer implementation
  */
-#include "renderer.h"
-
-#include "camera.h"
-#include "coordinate_system_transformations.h"
 #include "frame_synchronizer.h"
 #include "illumination.h"
-#include "object.h"
 
-#include "Base/common.h"
-#include "Base/coordinates.h"
-#include "Base/math_functions.h"
-#include "LinearAlgebra/Matrix.h"
+#include <Base/common.h>
+#include <Base/coordinates.h>
+#include <Base/math_functions.h>
+#include <Engine/camera.h>
+#include <Engine/coordinate_system_transformations.h>
+#include <Engine/object.h>
+#include <Engine/renderer.h>
+#include <LinearAlgebra/Matrix.h>
 
 #include <assert.h>
 #include <math.h>

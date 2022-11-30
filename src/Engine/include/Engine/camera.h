@@ -5,9 +5,8 @@
 #ifndef ENGINE_CAMERA_H
 #define ENGINE_CAMERA_H
 
-#include "coordinate_system_transformations.h"
-
-#include "Base/coordinates.h"
+#include <Base/coordinates.h>
+#include <Engine/coordinate_system_transformations.h>
 
 /**
  * \brief Intrinsic camera parameters

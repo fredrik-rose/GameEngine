@@ -1,7 +1,6 @@
-#include "../game.h"
-
-#include "Base/common.h"
-#include "TestFramework/test_framework.h"
+#include <Base/common.h>
+#include <Game/game.h>
+#include <TestFramework/test_framework.h>
 
 #include <stdio.h>
 

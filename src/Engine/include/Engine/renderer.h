@@ -5,9 +5,8 @@
 #ifndef GAME_RENDERER_H
 #define GAME_RENDERER_H
 
-#include "Base/coordinates.h"
-
-#include "coordinate_system_transformations.h"
+#include <Base/coordinates.h>
+#include <Engine/coordinate_system_transformations.h>
 
 struct CAM_CameraParameters;
 

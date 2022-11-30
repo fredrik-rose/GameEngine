@@ -73,8 +73,6 @@ include(CTest)
 
 add_executable(${PROJECT_NAME} src/main.c)
 
-include_directories(${PROJECT_SOURCE_DIR}/src)
-
 add_subdirectory(src)
 
 find_package(Doxygen REQUIRED doxygen dot)

@@ -2,9 +2,8 @@
  * \file
  * \brief Matrix implementation
  */
-#include "matrix.h"
-
-#include "vector.h"
+#include <LinearAlgebra/matrix.h>
+#include <LinearAlgebra/vector.h>
 
 #include <assert.h>
 #include <stdlib.h>

@@ -2,7 +2,7 @@
  * \file
  * \brief Vector implementation
  */
-#include "vector.h"
+#include <LinearAlgebra/vector.h>
 
 #include <assert.h>
 #include <math.h>

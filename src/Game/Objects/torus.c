@@ -4,11 +4,11 @@
  */
 #include "torus.h"
 
-#include "Base/coordinates.h"
-#include "Engine/coordinate_system_transformations.h"
-#include "Engine/object.h"
-#include "LinearAlgebra/matrix.h"
-#include "LinearAlgebra/vector.h"
+#include <Base/coordinates.h>
+#include <Engine/coordinate_system_transformations.h>
+#include <Engine/object.h>
+#include <LinearAlgebra/matrix.h>
+#include <LinearAlgebra/vector.h>
 
 #include <assert.h>
 #include <math.h>
