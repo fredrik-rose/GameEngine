@@ -3,9 +3,8 @@ add_library(Objects
     torus.c
 )
 
-target_link_libraries(Objects LINK_PRIVATE m)
-
-target_link_libraries(Objects LINK_PUBLIC
+target_link_libraries(Objects PRIVATE
+    m
     Base
     Engine
     LinearAlgebra

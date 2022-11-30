@@ -1,12 +1,12 @@
 add_executable(MatrixTests matrix_tests.c)
 add_executable(VectorTests vector_tests.c)
 
-target_link_libraries(MatrixTests LINK_PUBLIC
+target_link_libraries(MatrixTests PRIVATE
     Base
     LinearAlgebra
     TestFramework
 )
-target_link_libraries(VectorTests LINK_PUBLIC
+target_link_libraries(VectorTests PRIVATE
     Base
     LinearAlgebra
     TestFramework

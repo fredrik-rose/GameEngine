@@ -2,14 +2,14 @@ add_executable(CommonTests common_tests.c)
 add_executable(CoordinatesTests coordinates_tests.c)
 add_executable(MathFunctionsTests math_functions_tests.c)
 
-target_link_libraries(CommonTests LINK_PUBLIC
+target_link_libraries(CommonTests PRIVATE
     TestFramework
 )
-target_link_libraries(CoordinatesTests LINK_PUBLIC
+target_link_libraries(CoordinatesTests PRIVATE
     Base
     TestFramework
 )
-target_link_libraries(MathFunctionsTests LINK_PUBLIC
+target_link_libraries(MathFunctionsTests PRIVATE
     Base
     TestFramework
 )

@@ -6,11 +6,13 @@ add_library(Engine
     renderer.c
 )
 
-target_link_libraries(Engine LINK_PRIVATE m)
-
-target_link_libraries(Engine LINK_PUBLIC
-    Base
+target_link_libraries(Engine PRIVATE
+    m
     LinearAlgebra
+)
+
+target_link_libraries(Engine PUBLIC
+    Base
 )
 
 target_include_directories(Engine PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
