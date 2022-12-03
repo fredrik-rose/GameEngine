@@ -388,6 +388,47 @@ int main(void)
 }
 ```
 
+## Coordinate Systems
+
+This chapter describes the two coordinate systems used in the game engine.
+
+### World Coordinate System
+
+```
+Y
+^      Z
+|      ^
+|     /
+|   /
+| /
+/-------> X
+```
+
+This is a left-handed 3D Cartesian coordinate system. The x-axis points to the right, the y-axis
+points up and the z-axis points in the "forward" direction. Rotations are external, meaning that
+they occur about the axis of a fixed coordinate system: the second rotation occurs about the
+original coordinate frame not the one produced by the first rotation. The order of of rotation is
+
+1. x-axis (pitch)
+2. y-axis (yaw)
+3. z-axis (roll)
+
+### Image Coordinate System
+
+```
+|--------> x
+|
+|
+|
+v
+y
+```
+
+This is a 2D Cartesian coordinate system. The origin is in the upper left corner of the image. The
+x-axis points to the left and the y-axis points down. In integer coordinates the origin (0, 0) is
+located at the center of the top left pixel. For floating point coordinates the origin (0.0, 0.0)
+is located in the top left of the top left pixel.
+
 ## Dependency Graph
 
 <img src="img/dependency_graph.png" width="1000"/>
