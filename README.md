@@ -16,6 +16,7 @@ including:
 
 * Compiler (gcc)
 * Build system (cmake, make and ninja)
+* Debugger (gdb)
 * Documentation generator (doxygen)
 * Test framework ("home made" and ctest)
 * Test coverage (gcov and lvoc)
@@ -34,6 +35,14 @@ To build and run the application run the following commands.
 cmake -S <path to GameEngine> -B build -DCMAKE_BUILD_TYPE=Release
 cd build
 make
+./GameEngine
+```
+
+Alternatively Ninja can be used (this is valid for all cmake commands).
+```
+cmake -G Ninja -S <path to GameEngine> -B build -DCMAKE_BUILD_TYPE=Release
+cd build
+ninja
 ./GameEngine
 ```
 
@@ -104,6 +113,72 @@ information which makes it easier to find where a particular problem occurred as
 detailed call stack. Unfortunately valgrind is not compatible with the sanitizers used in the
 `Debug` configuration. To get full coverage of the dynamic code analyzers it is therefore required
 to run the test under two configurations (`Debug` and `RelWithDebInfo` with valgrind).
+
+### Debug
+
+To run the application in gdb use the following command.
+```
+gdb ./<program>
+```
+
+Some useful commands (note that most of them has a short form too, `list` -> `l`, `next` -> `n`, etc.).
+
+* `list`: Show the context where you are.
+* `start`: Run and break at first line.
+* `next`: Step to the next instruction without diving into functions.
+* `nexti`: Same as next but assembly instruction.
+* `step`: Step to the next instruction diving into functions.
+* `stepi`: Same as step but assembly instruction.
+* `run`: Run from start until end or breakpoint.
+* `continue`: Continue the run.
+* `finish`: Run until the current function, loop, etc. is finished.
+* `up`: Go up a level in the stack.
+* `down`: Go down a level in the stack
+* `print <var>`: Show the value of a variable.
+* `break <function>`: Set a breakpoint at the start of function.
+* `break <file>:<line>`: Set a breakpoint at a certain line in a file.
+* `info break`: List breakpoints.
+* `condition <break point number> <condition>`: Add a condition to existing breakpoint.
+* `watch <variable or address>`: Set a data breakpoint.
+* `backtrace (full)`: Show stack trace.
+* `set cwd`: Set the current working directory.
+* `quit`: Exit.
+
+#### TUI
+
+Gdb contains a quite useful textual user interface (TUI).
+
+* `ctrl+x, ctrl+a`: Open TUI.
+* `ctrl+l`: Repaint the screen.
+* `ctrl+p`: Previous command (instead of up arrow).
+* `ctrl+n`: Next command (instead of down arrow).
+
+#### Core Dumps
+
+Load a core dump in gdb using the following command (use `ls -ltr` to find the latest).
+
+```
+gdb -c core.12345
+```
+
+#### Reverse Debugging
+
+In some cases during debugging you step "too far" and want to step back, reversible debugging enables you to
+"step back in time". This is especially useful in cases with a broken stack. To enable reverse debugging use
+the `record` command in gdb. We can then
+
+1. run the program until it crashes (e.g. segfaults)
+2. find the address or variable that we try to dereference
+3. set a data breakpoint (using `watch`) at the address or variable
+4. run backwards using the `reverse-continue` command.
+
+Sometimes you have to run the program several times until it crashes. This can be enabled using commands.
+
+1. Set a breakpoint at the start and end of the program.
+2. `set pagination off`
+3. `command <last breakpoint number>` followed by `run <enter> end`
+4. `command <first breakpoint number>` followed by `record <enter> continue <enter> end`
+5. Let it run.
 
 ### Build Profile
 
@@ -237,6 +312,7 @@ Another useful perf visualizer is [Hotspot](https://github.com/KDAB/hotspot).
 The following are required
 
 * gcc
+* gdb
 * cmake
 * ninja
 * doxygen
@@ -253,6 +329,7 @@ On an Ubuntu system these can be installed with the following commands.
 sudo apt-get update && sudo apt-get upgrade -y
 sudo apt autoremove -y
 sudo apt-get install gcc -y
+sudo apt-get install gdb -y
 sudo apt-get install cmake -y
 sudo apt install ninja-build -y
 sudo apt-get install doxygen -y
