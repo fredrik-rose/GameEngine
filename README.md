@@ -180,6 +180,93 @@ Sometimes you have to run the program several times until it crashes. This can b
 4. `command <first breakpoint number>` followed by `record <enter> continue <enter> end`
 5. Let it run.
 
+#### Linker Errors
+
+List required libraries (recursively, needed by the linker), with paths and information about if
+they are found or not:
+```
+ldd <program>
+```
+
+List required libraries (immediate, needed by the application):
+```
+readelf -d <program> | grep library
+```
+
+Show the `RPATH` and `RUNPATH`:
+```
+readelf -d <program> | grep 'R.*PATH'
+```
+
+List library search paths:
+```
+LD_DEBUG=libs ./<program>
+```
+
+List system calls:
+```
+strace ./<program>
+```
+
+Set the `RPATH` for a program:
+```
+patchelf --set-rpath '$ORIGIN' <program>
+```
+
+List the symbols (also use the `D` flag for dynamic libraries):
+```
+nm -g <program>
+```
+
+To temporary add library search paths use the `LD_LIBRARY_PATH` environment variable.
+
+To solve missing shared libraries with errors similar to "error while loading shared libraries
+libxxx.so: cannot open shared object file: No such file or directory", follow the following steps.
+
+1. Use `ldd <program>` to find the missing dependencies.
+2. Check if they are direct dependencies or not by `readelf -d <program> | grep NEEDED`.
+3. Check the search paths for the dependencies with `LD_DEBUG=libs <program>`.
+4. Verify that the dependencies exists, that they are compiled and in the correct location.
+5. If needed add more search paths, either by
+    * Using the `LD_LIBRARY_PATH` environment variable.
+    * Adding them to `RPATH` by passing: `-Wl,-rpath,<dir>` (use `$ORIGIN` for relative paths).
+    * Adding them to `RUNPATH` by passing: `-Wl,--enable-new-dtags,-rpath,<dir>` (use `$ORIGIN` for relative paths).
+6. In cases where ldd can't find missing dependencies check if the program has elevated privileges, then ldd might lie.
+
+Note that in all examples above `<program>` could also be a library.
+
+##### Compiler and Linker Flags
+
+Note that order of compiler flags are important.
+
+Add include path for header files:
+```
+-I<dir>
+```
+
+Link with library libxxx.a:
+```
+-l<xxx>
+```
+
+Add search path for libraries to the linker:
+```
+-L<dir>
+```
+
+Add runtime search path for libraries (might be needed when building with non-standard dynamic libraries):
+```
+-Wl,rpath,<dir>
+-Wl,--enable-new-dtags
+```
+Note that there is a difference in `RPATH` and `RUNPATH` for transitive dependencies. `\$ORIGIN` can be used for path
+relative to the application.
+
+List the input libraries for the linker:
+```
+-Wl,-t
+```
+
 ### Build Profile
 
 <img src="img/build_trace.png" width="1000"/>
