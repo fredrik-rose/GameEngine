@@ -45,6 +45,18 @@ cd build
 ninja
 ./GameEngine
 ```
+Note that it is possible to build  e.g. the GameEngine only by passing it as target to ninja.
+```
+ninja GameEngine
+```
+
+### Build System
+
+If Ninja is used one can add the `--verbose` flag to get the full compiler command line. It is also
+possible to list all targets of a specific type (e.g. executable) with the following command.
+```
+ninja -t targets all | grep -i executable
+```
 
 ### Documentation
 
