@@ -1,6 +1,6 @@
 # Game Engine
 
-<img src="img/game.png" width="500"/>
+<img src="img/game.gif" width="1000"/>
 
 A simple game engine. It contains a graphics rendering pipeline that renders a model consisting of
 3D objects, a camera and a light source to a 2D screen. The objects are illuminated based on the
