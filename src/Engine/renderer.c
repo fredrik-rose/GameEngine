@@ -12,7 +12,7 @@
 #include <Engine/coordinate_system_transformations.h>
 #include <Engine/object.h>
 #include <Engine/renderer.h>
-#include <LinearAlgebra/Matrix.h>
+#include <LinearAlgebra/matrix.h>
 
 #include <assert.h>
 #include <math.h>

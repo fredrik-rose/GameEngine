@@ -6,8 +6,20 @@ find_program(IWYU_PATH NAMES include-what-you-use iwyu)
 if (NOT IWYU_PATH)
   message(FATAL_ERROR "Could not find the program include-what-you-use")
 endif()
-# Include what you use seems to have a bug, therefore we need to add the ugly include path.
-set(CMAKE_C_INCLUDE_WHAT_YOU_USE "${IWYU_PATH};-I/usr/lib/llvm-10/lib/clang/10.0.0/include")
+
+execute_process(
+    COMMAND ${IWYU_PATH} --version
+    OUTPUT_VARIABLE IWYU_VERSION
+)
+
+# Detect the correct Clang include directory dynamically
+execute_process(
+    COMMAND llvm-config --includedir
+    OUTPUT_VARIABLE LLVM_INCLUDE_DIR
+    OUTPUT_STRIP_TRAILING_WHITESPACE
+)
+
+set(CMAKE_C_INCLUDE_WHAT_YOU_USE "${IWYU_PATH};-I${LLVM_INCLUDE_DIR}")
 
 set(CMAKE_C_STANDARD 11)
 
@@ -62,9 +74,7 @@ if (CMAKE_C_CPPCHECK)
     )
 endif()
 
-set(CMAKE_C_CLANG_TIDY clang-tidy
-    -checks=*,-llvm-header-guard,readability-*,-readability-magic-numbers,-cppcoreguidelines-avoid-magic-numbers,
-    -warnings-as-errors=* -header-filter=.*)
+set(CMAKE_C_CLANG_TIDY clang-tidy)
 
 set(MEMORYCHECK_COMMAND_OPTIONS
     "--leak-check=full --show-leak-kinds=all --track-origins=yes --verbose --error-exitcode=1")

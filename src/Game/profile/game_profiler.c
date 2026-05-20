@@ -1,5 +1,5 @@
 #include <Base/common.h>
-#include <Game/Game.h>
+#include <Game/game.h>
 
 #include <stdio.h>
 

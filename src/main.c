@@ -1,5 +1,5 @@
 #include <Base/common.h>
-#include <Game/Game.h>
+#include <Game/game.h>
 
 #define FPS (20.0)
 #define STEPS (1000)
