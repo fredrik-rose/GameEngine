@@ -406,6 +406,22 @@ The `flamegraph.svg` can then be viewed in e.g. Chrome.
 
 Another useful perf visualizer is [Hotspot](https://github.com/KDAB/hotspot).
 
+#### Analyze Compiled Code
+
+Most compilers can generate vectorization reports, which are extremely useful for verifying whether a loop was
+vectorized and, if not, understanding the exact reason it wasn’t.
+```
+gcc -O3 -ftree-vectorize -fopt-info-vec-optimized -fopt-info-vec-missed
+
+foo.c:12:3: optimized: loop vectorized
+foo.c:25:5: missed: not vectorized: unsafe memory dependency
+```
+
+Another useful tool is `objdump` which extracts the assembly code.
+```
+objdump -d -S a.out
+```
+
 ### Requirements
 
 The following are required
